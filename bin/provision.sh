@@ -9,7 +9,7 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 apt-get update
 apt-get upgrade -y
 
-languages="oracle-java8-installer scala python3.4"
+languages="oracle-java8-installer oracle-java8-set-default scala python3.4"
 tools="docker git build-essential"
 
 apt-get install -y $languages $tools
