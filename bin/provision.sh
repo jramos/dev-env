@@ -11,10 +11,11 @@ apt-get update
 apt-get upgrade -y
 
 # install new packages
+dev_pkgs="python-dev python3.4-dev libxml2-dev libxslt-dev"
 languages="oracle-java8-installer oracle-java8-set-default scala python3.4 golang clojure1.6 nodejs"
-tools="docker git build-essential"
+tools="docker git build-essential python-pip"
 
-apt-get install -y $languages $tools
+apt-get install -y $dev_pkgs $languages $tools
 
 # install rvm + ruby
 su - vagrant -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
@@ -25,6 +26,10 @@ su - vagrant -c "\curl -sSL https://get.rvm.io | bash -s stable"
 rvm install ruby
 rvm install jruby
 rvm install jruby-9.0.0.0
+
+# AWS CLIs
+pip install awscli
+pip install awsebcli
 
 # cleanup
 apt-get autoremove -y
