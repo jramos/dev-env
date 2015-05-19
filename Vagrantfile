@@ -13,4 +13,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "private_network", type: "dhcp"
 
   config.vm.provision "shell", path: "bin/provision.sh"
+  config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
 end
