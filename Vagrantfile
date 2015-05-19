@@ -10,6 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "debian/jessie64"
   config.vm.hostname = [Etc.getlogin, "-dev"].join
+  config.vm.network "private_network", type: "dhcp"
 
   config.vm.provision "shell", path: "bin/provision.sh"
 end
