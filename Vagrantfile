@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.cpus = 8
   end
 
-  config.vm.box = "debian/jessie64"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = [Etc.getlogin, "-dev"].join
   config.vm.network "private_network", type: "dhcp"
 
