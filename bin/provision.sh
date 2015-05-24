@@ -13,7 +13,7 @@ apt-get upgrade -y
 # install new packages
 dev_pkgs="python-dev python3.4-dev libxml2-dev libxslt-dev libyaml-dev"
 languages="oracle-java8-installer oracle-java8-set-default python3.4"
-tools="git build-essential python-pip python3-pip ant"
+tools="git build-essential python-pip python3-pip ant unzip"
 
 apt-get install -y $dev_pkgs $languages $tools
 
