@@ -7,19 +7,32 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
     # create and provision the VM
     vagrant up
 
-    # connect to it
+    # connect
     vagrant ssh
+
+    # stop
+    vagrant halt
+
+    # reprovision
+    vagrant up --provision
+
+    # destroy
+    vagrant destroy
 
 See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
 
-By default, the VM will mount the `src` folder in your home directory to the `src` folder in vagrant's home directory. Additionally, the `pwd` when `vagrant up` is called will be mounted under `/vagrant` on the VM (e.g. the `dev-env` directory).
+By default, the VM will mount the `src` folder in `~/` to the `src` folder in vagrant's home directory. Additionally, when `vagrant up` is called, `pwd` will be mounted under `/vagrant` on the VM (e.g. the `dev-env` directory).
+
+Your `.gitconfig` is also copied to the VM.
 
 ### Optional setup
 
-    # choose a GTK theme for Eclipse over X11
+    # choose a GTK theme for Eclipse
     gtk-theme-switch2
 
-## Virtual Machine Configuration
+To use the installed version of Eclipse, it is assumed that you have [XQuartz](http://xquartz.macosforge.org/landing/) or a similar X11 implementation (e.g. [Cygwin/X](http://en.wikipedia.org/wiki/Cygwin/X)) installed locally.
+
+## Virtual Machine Specs
 
   * Ubuntu 14.04 LTS (`ubuntu/trusty64`)
   * 8 CPUs; 8 GB RAM; 40 GB SATA
