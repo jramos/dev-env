@@ -13,9 +13,10 @@ apt-get upgrade -y
 # install new packages
 dev_pkgs="python-dev python3.4-dev libxml2-dev libxslt-dev libyaml-dev"
 languages="oracle-java8-installer oracle-java8-set-default python3.4"
-tools="git build-essential python-pip python3-pip ant unzip"
+tools="git build-essential python-pip python3-pip ant maven unzip eclipse eclipse-egit eclipse-wtp"
+tweaks="gtk-theme-switch gtk2-engines"
 
-apt-get install -y $dev_pkgs $languages $tools
+apt-get install -y $dev_pkgs $languages $tools $tweaks
 
 # cleanup
 apt-get autoremove -y
