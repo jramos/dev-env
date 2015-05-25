@@ -14,7 +14,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * Scala 2.11 with sbt, Akka and Play
   * Python 2.7/3.4 and Jython 2.7
   * JRuby 1.7/9.0.0.0 (via rvm)
-  * Groovy enVironment Manager (gvm) for Groovy/Gradle/Grails
+  * gvm for Groovy/Gradle/Grails
   * Eclipse with Egit and Web Tools Platform (WTP)
   * Ant and Maven
   * Docker 1.0
