@@ -2,23 +2,25 @@
 
 My development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
-## VM Configuration
+## System Information
+
+### VM Configuration
 
   * Ubuntu 14.04 LTS (`ubuntu/trusty64`)
   * 8 CPUs; 8 GB RAM; 40 GB SATA
   * Private DHCP network
   * SSH agent and X11 forwarding
 
-## Dev Tools
+### Provisioned Tools
   * Oracle Java 7/8
-  * Scala 2.11 + sbt, Akka and Play
+  * Scala 2.11 + sbt
   * Python 2.7/3.4 + pip
-  * JRuby 1.7/9.0.0.0 (via rvm)
-  * gvm for Groovy/Gradle/Grails
-  * Eclipse + Egit and Web Tools Platform (WTP)
+  * rvm for Ruby/JRuby
+  * gvm for Groovy/Gradle
+  * Eclipse + Egit
   * Ant and Maven
+  * build-essentials, misc tools and libs
   * Docker 1.0
-  * build-essentials, git, libxml/xslt/yaml dev headers
 
 ## Basic Usage
 

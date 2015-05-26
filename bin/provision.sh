@@ -6,7 +6,9 @@ echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 select true" | 
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
 
 # other apt sources
+## sbt
 echo "deb http://dl.bintray.com/sbt/debian /" | tee /etc/apt/sources.list.d/sbt.list
+## docker
 echo "deb http://get.docker.io/ubuntu docker main" | tee /etc/apt/sources.list.d/docker.list
 
 # update + upgrade system
@@ -15,8 +17,8 @@ apt-get upgrade -y
 
 # system packages
 python="python2.7 python3.4 python-dev python3.4-dev python-pip python3-pip libxml2-dev libxslt-dev libyaml-dev"
-java="oracle-java7-installer oracle-java8-installer oracle-java8-set-default ant maven eclipse eclipse-egit eclipse-wtp"
-misc="git build-essential docker.io unzip gtk-theme-switch gtk2-engines"
+java="oracle-java7-installer oracle-java8-installer oracle-java8-set-default ant maven eclipse eclipse-egit"
+misc="git build-essential docker.io bzip2 zip unzip gtk-theme-switch gtk2-engines"
 
 apt-get install -y $python $java $misc
 
@@ -28,35 +30,12 @@ wget -q -O /tmp/$scala_deb http://downloads.typesafe.com/scala/$scala_version/$s
 dpkg -i /tmp/$scala_deb
 rm /tmp/$scala_deb
 
-# sbt
-apt-get install -y sbt
+# sbt -- note: they have no published key, hence the need to force
+apt-get install -y --force-yes sbt
 
-# akka
-akka_base_version="2.3.11"
-akka_version="$scala_base_version-$akka_base_version"
-akka_zip="akka_$akka_version.zip"
-akka_home="/usr/local/akka"
-echo "export AKKA_HOME=$akka_home" | tee /etc/profile.d/akka.sh
-wget -q -O /tmp/$akka_zip http://downloads.typesafe.com/akka/$akka_zip
-unzip /tmp/$akka_zip -d /usr/local/
-ln -s /usr/local/akka-$akka_base_version $akka_home
-rm /tmp/$akka_zip
-
-# play/activator
-activator_version="1.3.2"
-activator_zip="typesafe-activator-$activator_version-minimal.zip"
-wget -q -O /tmp/$activator_zip http://downloads.typesafe.com/typesafe-activator/$activator_version/$activator_zip
-unzip /tmp/$activator_zip -d /tmp/
-su - vagrant -c "cp /tmp/activator-$activator_version-minimal/activator ~/bin"
-su - vagrant -c "cp /tmp/activator-$activator_version-minimal/activator-launch-$activator_version.jar ~/bin"
-rm /tmp/$activator_zip
-rm -rf /tmp/activator-$activator_version-minimal/
-
-# rvm + jruby
+# rvm
 su - vagrant -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
 su - vagrant -c "\curl -sSL https://get.rvm.io | bash -s stable"
-su - vagrant -c "rvm install jruby-1.7"
-su - vagrant -c "rvm install jruby-9.0.0.0"
 
 # gvm
 su - vagrant -c "curl -s get.gvmtool.net | bash"
