@@ -52,7 +52,7 @@ See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a f
 
 ### Shared folders
 
-When `vagrant up` is called, `pwd` is mounted at `/vagrant` in the VM. Additionally, `~/src` will be mounted as `/home/vagrant/src` in the VM.
+When `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. Additionally, `~/src` will be mounted as `/home/vagrant/src` in the VM.
 
 `~/.gitconfig` is copied from the host to the VM when provisioned, as well.
 
@@ -68,6 +68,7 @@ By default, the environment uses Clearlooks. To use the installed version of Ecl
   * [Vagrant Documentation](https://docs.vagrantup.com/v2/)
   * [Docker User Guide](https://docs.docker.com/userguide/)
   * [Docker Compose](https://docs.docker.com/compose/)
+  * [Docker Official Images](https://github.com/docker-library/official-images)
 
 ## License
 
