@@ -21,26 +21,31 @@ A modern development environment. Requires [vagrant](http://www.vagrantup.com/do
 
 ### Dev Tools
 
-  * Docker 1.6
+  * Docker 1.6 and Compose
   * Eclipse + Egit
   * Ant and Maven
   * build-essentials, misc utilities and dev libs
 
 ## Basic usage
 
-    # create and start the VM
+Create and start the VM:
+
     vagrant up
 
-    # connect
+Connect to it over SSH:
+
     vagrant ssh
 
-    # stop
+Stop the VM:
+
     vagrant halt
 
-    # reprovision
+Reprovision:
+
     vagrant up --provision
 
-    # destroy
+Destroy:
+
     vagrant destroy
 
 See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
