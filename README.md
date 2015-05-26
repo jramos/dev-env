@@ -6,7 +6,7 @@ A modern development environment. Requires [vagrant](http://www.vagrantup.com/do
 
 ### VM configuration
 
-  * Ubuntu 14.04 LTS ([ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trusty64))
+  * Ubuntu 14.04.2 LTS ([ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trusty64))
   * 8 CPUs; 8 GB RAM; 40 GB SATA
   * Private DHCP network
   * SSH agent and X11 forwarding
@@ -22,7 +22,7 @@ A modern development environment. Requires [vagrant](http://www.vagrantup.com/do
 ### Dev Tools
 
   * Docker 1.6 and Compose
-  * Eclipse + Egit
+  * Eclipse 4.4
   * Ant and Maven
   * build-essentials, misc utilities and dev libs
 
