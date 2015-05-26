@@ -31,6 +31,14 @@ else
   installed_docker=true
 fi
 
+# docker compose
+if hash docker-compose 2>/dev/null; then
+  echo "Docker Compose already installed"
+else
+  curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  chmod +x /usr/local/bin/docker-compose
+fi
+
 # install scala -- TODO: check version and upgrade existing
 if hash scala 2>/dev/null; then
   echo "Scala already installed"
