@@ -32,7 +32,7 @@ Create and start the VM:
 
     vagrant up
 
-Connect to it over SSH:
+Connect via SSH:
 
     vagrant ssh
 
@@ -52,9 +52,9 @@ See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a f
 
 ### Shared folders
 
-By default, when `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. Additionally, this environment will share your `~/src` folder as `/home/vagrant/src`.
+When `vagrant up` is called, `pwd` is mounted at `/vagrant` in the VM. Additionally, `~/src` will be mounted as `/home/vagrant/src` in the VM.
 
-Your local `.gitconfig` is copied to the VM when provisioned, as well.
+`~/.gitconfig` is copied from the host to the VM when provisioned, as well.
 
 ### Optional Setup
 
@@ -67,6 +67,7 @@ By default, the environment uses Clearlooks. To use the installed version of Ecl
 
   * [Vagrant Documentation](https://docs.vagrantup.com/v2/)
   * [Docker User Guide](https://docs.docker.com/userguide/)
+  * [Docker Compose](https://docs.docker.com/compose/)
 
 ## License
 
