@@ -52,14 +52,6 @@ su - vagrant -c "cp /tmp/activator-$activator_version-minimal/activator-launch-$
 rm /tmp/$activator_zip
 rm -rf /tmp/activator-$activator_version-minimal/
 
-# jython
-jython_version="2.7.0"
-jython_jar="jython-installer-$jython_version.jar"
-wget -q -O /tmp/$jython_jar http://search.maven.org/remotecontent?filepath=org/python/jython-installer/$jython_version/$jython_jar
-java -jar /tmp/$jython_jar -s --exclude=demo -d /usr/local/jython-$jython_version
-ln -s /usr/local/jython-$jython_version /usr/local/jython
-rm /tmp/$jython_jar
-
 # rvm + jruby
 su - vagrant -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
 su - vagrant -c "\curl -sSL https://get.rvm.io | bash -s stable"

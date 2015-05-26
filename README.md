@@ -11,11 +11,11 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 ## Dev Tools
   * Oracle Java 7/8
-  * Scala 2.11 with sbt, Akka and Play
-  * Python 2.7/3.4 and Jython 2.7
+  * Scala 2.11 + sbt, Akka and Play
+  * Python 2.7/3.4 + pip
   * JRuby 1.7/9.0.0.0 (via rvm)
   * gvm for Groovy/Gradle/Grails
-  * Eclipse with Egit and Web Tools Platform (WTP)
+  * Eclipse + Egit and Web Tools Platform (WTP)
   * Ant and Maven
   * Docker 1.0
   * build-essentials, git, libxml/xslt/yaml dev headers
