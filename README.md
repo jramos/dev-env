@@ -1,10 +1,10 @@
 # dev-env
 
-My development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+Instant development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
-## System Information
+## System information
 
-### Provisioned Tools
+### Provisioned tools
   * Oracle Java 7/8
   * Scala 2.11 + sbt
   * Python 2.7/3.4 + pip
@@ -15,16 +15,16 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * build-essentials, misc tools and libs
   * Docker 1.6
 
-### VM Configuration
+### VM configuration
 
   * Ubuntu 14.04 LTS (`ubuntu/trusty64`)
   * 8 CPUs; 8 GB RAM; 40 GB SATA
   * Private DHCP network
   * SSH agent and X11 forwarding
 
-## Basic Usage
+## Basic usage
 
-    # create or start the VM
+    # create and start the VM
     vagrant up
 
     # connect
@@ -41,11 +41,13 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
 
-By default, when `vagrant up` is called, `pwd` will be mounted under `/vagrant` on the VM (e.g. the `dev-env` directory). The VM will also share `~/src` on the host to `~/` on the guest.
+### Shared folders
 
-Your `.gitconfig` is also copied to the VM.
+By default, when `vagrant up` is called, `pwd` will be mounted under `/vagrant` on the VM. Additionally, the VM will share `~/src` on the host as `~/src` on the guest.
 
-### Optional setup
+Your `.gitconfig` is copied to the VM when provisioned, as well.
+
+### Optional Setup
 
     # choose a GTK theme for Eclipse
     gtk-theme-switch2
