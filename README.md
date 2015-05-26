@@ -13,7 +13,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * Eclipse + Egit
   * Ant and Maven
   * build-essentials, misc tools and libs
-  * Docker 1.0
+  * Docker 1.6
 
 ### VM Configuration
 
