@@ -5,7 +5,7 @@ add-apt-repository ppa:webupd8team/java
 echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
 
-# other apt sources
+# apt source for sbt
 echo "deb http://dl.bintray.com/sbt/debian /" | tee /etc/apt/sources.list.d/sbt.list
 
 # update + upgrade system
@@ -22,13 +22,14 @@ apt-get install -y $python $java $misc
 # docker
 wget -qO- https://get.docker.com/ | sh
 usermod -aG docker vagrant
+sed -i '/GRUB_CMDLINE_LINUX=""/c\GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"' /etc/default/grub
 
 # scala
 scala_version="2.11.6"
+echo "Downloading scala $scala_version..."
 scala_deb="scala-$scala_version.deb"
 wget -q -O /tmp/$scala_deb http://downloads.typesafe.com/scala/$scala_version/$scala_deb
 dpkg -i /tmp/$scala_deb
-rm /tmp/$scala_deb
 
 # sbt -- note: they have no published key, hence the need to force
 apt-get install -y --force-yes sbt
@@ -42,3 +43,7 @@ su - vagrant -c "curl -s get.gvmtool.net | bash"
 
 # cleanup
 apt-get autoremove -y
+
+# reboot for grub changes, /tmp cleanup
+update-grub
+reboot
