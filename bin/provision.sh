@@ -24,7 +24,7 @@ installed_docker=false
 if hash docker 2>/dev/null; then
   echo "Docker already installed"
 else
-  wget -qO- https://get.docker.com/ | sh
+  wget -nv -O- https://get.docker.com/ | sh
   usermod -aG docker vagrant
   sed -i '/GRUB_CMDLINE_LINUX=""/c\GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"' /etc/default/grub
   update-grub
@@ -38,9 +38,10 @@ else
   scala_version="2.11.6"
   echo "Downloading scala $scala_version..."
   scala_deb="scala-$scala_version.deb"
-  wget -q -O /tmp/$scala_deb http://downloads.typesafe.com/scala/$scala_version/$scala_deb
+  wget -nv -O /tmp/$scala_deb http://downloads.typesafe.com/scala/$scala_version/$scala_deb
   dpkg -i /tmp/$scala_deb
   rm /tmp/$scala_deb
+  echo "export SCALA_HOME=/usr/share/scala" | tee /etc/profile.d/scala.sh
 fi
 
 # sbt -- note: they have no published key, hence the need to force
