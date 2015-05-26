@@ -1,26 +1,30 @@
 # dev-env
 
-Instant development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+A modern development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
 ## System information
 
-### Provisioned tools
-  * Oracle Java 7/8
+### VM configuration
+
+  * Ubuntu 14.04 LTS ([ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trusty64))
+  * 8 CPUs; 8 GB RAM; 40 GB SATA
+  * Private DHCP network
+  * SSH agent and X11 forwarding
+
+### Languages
+
+  * Java - Oracle 7/8, OpenJDK 7
   * Scala 2.11 + sbt
   * Python 2.7/3.4 + pip
   * rvm for Ruby/JRuby
   * gvm for Groovy/Gradle
+
+### Dev Tools
+
+  * Docker 1.6
   * Eclipse + Egit
   * Ant and Maven
-  * build-essentials, misc tools and libs
-  * Docker 1.6
-
-### VM configuration
-
-  * Ubuntu 14.04 LTS (`ubuntu/trusty64`)
-  * 8 CPUs; 8 GB RAM; 40 GB SATA
-  * Private DHCP network
-  * SSH agent and X11 forwarding
+  * build-essentials, misc utilities and dev libs
 
 ## Basic usage
 
@@ -43,16 +47,21 @@ See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a f
 
 ### Shared folders
 
-By default, when `vagrant up` is called, `pwd` will be mounted under `/vagrant` on the VM. Additionally, the VM will share `~/src` on the host as `~/src` on the guest.
+By default, when `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. Additionally, this environment will share your `~/src` folder as `/home/vagrant/src`.
 
-Your `.gitconfig` is copied to the VM when provisioned, as well.
+Your local `.gitconfig` is copied to the VM when provisioned, as well.
 
 ### Optional Setup
 
-    # choose a GTK theme for Eclipse
+    # choose a new GTK theme for Eclipse
     gtk-theme-switch2
 
-To use the installed version of Eclipse, it is assumed that you have [XQuartz](http://xquartz.macosforge.org/landing/) or a similar X11 implementation (e.g. [Cygwin/X](http://en.wikipedia.org/wiki/Cygwin/X)) installed locally.
+By default, the environment uses Clearlooks. To use the installed version of Eclipse, it is assumed that you have [XQuartz](http://xquartz.macosforge.org/landing/) or a similar X11 implementation (e.g. [Cygwin/X](http://en.wikipedia.org/wiki/Cygwin/X)) installed locally.
+
+## Resources
+
+  * [Vagrant Documentation](https://docs.vagrantup.com/v2/)
+  * [Docker User Guide](https://docs.docker.com/userguide/)
 
 ## License
 
