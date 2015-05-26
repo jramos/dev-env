@@ -23,8 +23,7 @@ misc="git build-essential docker.io bzip2 zip unzip gtk-theme-switch gtk2-engine
 apt-get install -y $python $java $misc
 
 # scala
-scala_base_version="2.11"
-scala_version="$scala_base_version.6"
+scala_version="2.11.6"
 scala_deb="scala-$scala_version.deb"
 wget -q -O /tmp/$scala_deb http://downloads.typesafe.com/scala/$scala_version/$scala_deb
 dpkg -i /tmp/$scala_deb
