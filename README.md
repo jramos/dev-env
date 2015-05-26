@@ -4,13 +4,6 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 ## System Information
 
-### VM Configuration
-
-  * Ubuntu 14.04 LTS (`ubuntu/trusty64`)
-  * 8 CPUs; 8 GB RAM; 40 GB SATA
-  * Private DHCP network
-  * SSH agent and X11 forwarding
-
 ### Provisioned Tools
   * Oracle Java 7/8
   * Scala 2.11 + sbt
@@ -22,9 +15,16 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * build-essentials, misc tools and libs
   * Docker 1.0
 
+### VM Configuration
+
+  * Ubuntu 14.04 LTS (`ubuntu/trusty64`)
+  * 8 CPUs; 8 GB RAM; 40 GB SATA
+  * Private DHCP network
+  * SSH agent and X11 forwarding
+
 ## Basic Usage
 
-    # create and provision the VM
+    # create or start the VM
     vagrant up
 
     # connect
@@ -41,7 +41,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
 
-By default, the VM will mount the `src` folder in `~/` to the `src` folder in vagrant's home directory. Additionally, when `vagrant up` is called, `pwd` will be mounted under `/vagrant` on the VM (e.g. the `dev-env` directory).
+By default, when `vagrant up` is called, `pwd` will be mounted under `/vagrant` on the VM (e.g. the `dev-env` directory). The VM will also share `~/src` on the host to `~/` on the guest.
 
 Your `.gitconfig` is also copied to the VM.
 

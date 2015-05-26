@@ -6,10 +6,7 @@ echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 select true" | 
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
 
 # other apt sources
-## sbt
 echo "deb http://dl.bintray.com/sbt/debian /" | tee /etc/apt/sources.list.d/sbt.list
-## docker
-echo "deb http://get.docker.io/ubuntu docker main" | tee /etc/apt/sources.list.d/docker.list
 
 # update + upgrade system
 apt-get update
@@ -18,9 +15,13 @@ apt-get upgrade -y
 # system packages
 python="python2.7 python3.4 python-dev python3.4-dev python-pip python3-pip libxml2-dev libxslt-dev libyaml-dev"
 java="oracle-java7-installer oracle-java8-installer oracle-java8-set-default ant maven eclipse eclipse-egit"
-misc="git build-essential docker.io bzip2 zip unzip gtk-theme-switch gtk2-engines"
+misc="git build-essential bzip2 zip unzip gtk-theme-switch gtk2-engines"
 
 apt-get install -y $python $java $misc
+
+# docker
+wget -qO- https://get.docker.com/ | sh
+usermod -aG docker vagrant
 
 # scala
 scala_version="2.11.6"
