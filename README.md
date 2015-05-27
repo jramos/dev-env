@@ -21,7 +21,8 @@ A modern development environment. Requires [vagrant](http://www.vagrantup.com/do
 
 ### Dev Tools
 
-  * Docker 1.6 and Compose
+  * Docker 1.6 and Docker Compose
+  * Chef, Chef Zero and Puppet
   * Eclipse 4.4
   * Ant and Maven
   * build-essentials, misc utilities and dev libs

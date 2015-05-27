@@ -15,8 +15,8 @@ apt-get upgrade -y
 # system packages
 python="python2.7 python3.4 python-dev python3.4-dev python-pip python3-pip"
 java="oracle-java7-installer oracle-java8-installer oracle-java8-set-default ant maven"
-libs="libxml2-dev libxslt-dev libyaml-dev libcurl4-openssl-dev libjemalloc1 libjemalloc-dev"
-misc="git build-essential ca-certificates bzip2 zip unzip gtk-theme-switch gtk2-engines wget curl"
+libs="libxml2-dev libxslt-dev libyaml-dev libcurl4-openssl-dev libjemalloc1 libjemalloc-dev libreadline6-dev libgdbm-dev libncurses5-dev libffi-dev"
+misc="git build-essential ca-certificates bzip2 zip unzip gtk-theme-switch gtk2-engines wget curl autoconf automake libtool bison"
 
 apt-get install -y $python $java $libs $misc
 
@@ -31,7 +31,6 @@ else
 fi
 
 # install docker; TODO: check version and upgrade existing
-installed_docker=false
 if hash docker 2>/dev/null; then
   echo "Docker already installed"
 else
@@ -39,7 +38,6 @@ else
   usermod -aG docker vagrant
   sed -i '/GRUB_CMDLINE_LINUX=""/c\GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"' /etc/default/grub
   update-grub
-  installed_docker=true
 fi
 
 # docker compose
@@ -69,6 +67,7 @@ apt-get install -y --force-yes sbt
 # rvm
 su - vagrant -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
 su - vagrant -c "\curl -sSL https://get.rvm.io | bash -s stable"
+apt-get install -y bundler
 
 # gvm
 su - vagrant -c "curl -s get.gvmtool.net | bash"
@@ -76,12 +75,14 @@ su - vagrant -c "curl -s get.gvmtool.net | bash"
 # misc
 su - vagrant -c "gtk-theme-switch2 /usr/share/themes/Clearlooks"
 chmod +x /etc/profile.d/*.sh
+grep "vm.overcommit_memory = 1" /etc/sysctl.conf || echo "vm.overcommit_memory = 1" | tee -a /etc/sysctl.conf
+grep "net.core.somaxconn = 65535" /etc/sysctl.conf || echo "net.core.somaxconn = 65535" | tee -a /etc/sysctl.conf
+grep 'echo "never" > /sys/kernel/mm/transparent_hugepage/enabled' /etc/rc.local || echo 'echo "never" > /sys/kernel/mm/transparent_hugepage/enabled' | tee /etc/rc.local
+chmod +x /etc/rc.local
 
 # cleanup
 apt-get autoremove -y
 
-if [ $installed_docker == true ]; then
-  # reboot for grub changes
-  echo "Rebooting..."
-  reboot
-fi
+# reboot for sysctl and grub changes
+echo "Rebooting..."
+reboot
