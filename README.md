@@ -1,6 +1,6 @@
 # dev-env
 
-A modern development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+A  modern development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
 ## System information
 
@@ -53,59 +53,71 @@ Destroy:
 
 See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
 
-### Docker
+### Docker Compose
 
-An example script has been provided to initialize a new Rails application. It creates several containers, for the application, PostgreSQL and Redis, and links them together.
+Build the app containers:
 
-To generate a new Rails app:
-
-    cd examples/rails
-    ./init.sh <app_name>
-    cd ~/src/rails/<app_name>
-
-Build the app:
-
-    docker build .
+    docker-compose build
 
 Start the app containers:
 
     docker-compose up -d
 
-List the app containers:
+List all containers:
 
     docker-compose ps
 
-The output should be similar to this:
+Run a command on the web container:
 
-          Name                    Command               State           Ports          
-    ----------------------------------------------------------------------------------
-    myapp_postgres_1   /docker-entrypoint.sh postgres   Up      5432/tcp               
-    myapp_redis_1      /entrypoint.sh redis-server      Up      6379/tcp               
-    myapp_web_1        bundle exec rails server - ...   Up      0.0.0.0:3000->3000/tcp 
+    docker-compose run web <some command>
 
-Create the Rails database:
-
-    docker-compose run web rake db:create
-
-You should now be able to view the default Rails application page at [http://127.0.0.1:3000](http://127.0.0.1:3000).
-
-Stop the app containers:
+Stop all containers:
 
     docker-compose stop
 
-Destroy:
+Kill all containers:
+
+    docker-compose kill
+
+Destroy all containers:
 
     docker-compose rm
 
-See the [Docker User Guide](https://docs.docker.com/userguide/) for a full list of commands.
+See the [Docker Compose User Guide](https://docs.docker.com/compose/) for a full list of commands.
 
-### Shared folders
+## Docker Examples
+
+### Rails
+
+An example script has been provided to initialize a new Rails application. It creates containers for the application, PostgreSQL and Redis, and links them together.
+
+To generate a new Rails app:
+
+    cd examples/rails
+    ./init.sh <app_name>
+
+The application is now in `~/src/rails/<app_name>`:
+
+    cd ~/src/rails/<app_name>
+
+Build and start the containers:
+
+    docker-compose build
+    docker-compose up -d
+
+Create and migrate the database:
+
+    docker-compose run web rake db:create db:migrate
+
+You should now see the default Rails application page at [http://localhost:3000](http://localhost:3000).
+
+## Shared folders
 
 When `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. Additionally, `~/src` will be mounted as `/home/vagrant/src` in the VM.
 
 `~/.gitconfig` is copied from the host to the VM when provisioned, as well.
 
-### Optional Setup
+## Optional Setup
 
     # choose a new GTK theme for Eclipse
     gtk-theme-switch2
