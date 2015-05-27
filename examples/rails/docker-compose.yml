@@ -1,0 +1,25 @@
+web:
+  build: .
+  working_dir: /var/app
+  command: bundle exec rails server -p 3000 -b 0.0.0.0 -e development
+  ports:
+    - "3000:3000"
+  environment:
+    RACK_ENV: development
+    RAILS_ENV: development
+  links:
+    - redis
+    - postgres
+  volumes:
+    - .:/var/app
+
+redis:
+  image: redis:3.0
+
+postgres:
+  image: postgres:9.4
+  environment:
+    POSTGRES_DATABASE: test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_ROOT_PASSWORD: supersecret

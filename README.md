@@ -29,6 +29,8 @@ A modern development environment. Requires [vagrant](http://www.vagrantup.com/do
 
 ## Basic usage
 
+### Vagrant
+
 Create and start the VM:
 
     vagrant up
@@ -50,6 +52,52 @@ Destroy:
     vagrant destroy
 
 See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
+
+### Docker
+
+An example script has been provided to initialize a new Rails application. It creates several containers, for the application, PostgreSQL and Redis, and links them together.
+
+To generate a new Rails app:
+
+    cd examples/rails
+    ./init.sh <app_name>
+    cd ~/src/rails/<app_name>
+
+Build the app:
+
+    docker build .
+
+Start the app containers:
+
+    docker-compose up -d
+
+List the app containers:
+
+    docker-compose ps
+
+The output should be similar to this:
+
+          Name                    Command               State           Ports          
+    ----------------------------------------------------------------------------------
+    myapp_postgres_1   /docker-entrypoint.sh postgres   Up      5432/tcp               
+    myapp_redis_1      /entrypoint.sh redis-server      Up      6379/tcp               
+    myapp_web_1        bundle exec rails server - ...   Up      0.0.0.0:3000->3000/tcp 
+
+Create the Rails database:
+
+    docker-compose run web rake db:create
+
+You should now be able to view the default Rails application page at [http://127.0.0.1:3000](http://127.0.0.1:3000).
+
+Stop the app containers:
+
+    docker-compose stop
+
+Destroy:
+
+    docker-compose rm
+
+See the [Docker User Guide](https://docs.docker.com/userguide/) for a full list of commands.
 
 ### Shared folders
 
