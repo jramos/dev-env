@@ -20,7 +20,7 @@ misc="git build-essential ca-certificates bzip2 zip unzip gtk-theme-switch gtk2-
 
 apt-get install -y $python $java $libs $misc
 
-# install Eclipse Luna
+# install Eclipse Luna; TODO: check version and upgrade existing
 if hash eclipse 2>/dev/null; then
   echo "Eclipse already installed"
 else
@@ -40,7 +40,7 @@ else
   update-grub
 fi
 
-# docker compose
+# docker compose; TODO: check version and upgrade existing
 if hash docker-compose 2>/dev/null; then
   echo "Docker Compose already installed"
 else
@@ -48,7 +48,7 @@ else
   chmod +x /usr/local/bin/docker-compose
 fi
 
-# install scala -- TODO: check version and upgrade existing
+# install scala; TODO: check version and upgrade existing
 if hash scala 2>/dev/null; then
   echo "Scala already installed"
 else
@@ -71,6 +71,10 @@ apt-get install -y bundler
 
 # gvm
 su - vagrant -c "curl -s get.gvmtool.net | bash"
+
+# nodejs
+curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+apt-get install -y nodejs
 
 # misc
 su - vagrant -c "gtk-theme-switch2 /usr/share/themes/Clearlooks"
