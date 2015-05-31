@@ -7,6 +7,8 @@ web:
   environment:
     RACK_ENV: development
     RAILS_ENV: development
+    DATABASE_URL: postgres://postgres:postgres@postgres:5432/myapp_development
+    DB_POOL: 1
   links:
     - redis
     - postgres
