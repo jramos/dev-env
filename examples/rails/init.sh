@@ -4,7 +4,7 @@ app_name=$1
 
 function create_rails_app() {
   rails new ~/src/rails/$app_name --force --database=postgresql --skip-bundle
-  cp config/database.yml ~/src/rails/$app_name/config/
+  cp -r config/* ~/src/rails/$app_name/config/
   cp docker-compose.yml ~/src/rails/$app_name/
   cp Dockerfile ~/src/rails/$app_name/
   cp Gemfile ~/src/rails/$app_name/

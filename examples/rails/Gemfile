@@ -7,6 +7,7 @@ gem 'puma',           '~> 2.11'
 # redis
 gem 'hiredis',        '~> 0.4.0'
 gem 'redis',          '>= 2.2.0', :require => ['redis', 'redis/connection/hiredis']
+gem 'redis-rails',    '~> 4.0'
 
 # views
 gem 'sass-rails',     '~> 5.0'
