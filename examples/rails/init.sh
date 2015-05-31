@@ -4,13 +4,10 @@ app_name=$1
 
 function create_rails_app() {
   rails new ~/src/rails/$app_name --force --database=postgresql --skip-bundle
-  cp database.yml ~/src/rails/$app_name/config/
+  cp config/database.yml ~/src/rails/$app_name/config/
   cp docker-compose.yml ~/src/rails/$app_name/
   cp Dockerfile ~/src/rails/$app_name/
-
-  cd ~/src/rails/$app_name/
-  sed -i "s/^# gem 'therubyracer'/gem 'therubyracer'/" Gemfile
-
+  cp Gemfile ~/src/rails/$app_name/
   echo "Rails app created in ~/src/rails/$app_name"
 }
 

@@ -19,7 +19,7 @@ redis:
 postgres:
   image: postgres:9.4
   environment:
-    POSTGRES_DATABASE: test
-    POSTGRES_USER: postgres
+    POSTGRES_DATABASE: myapp_development
+    POSTGRES_USERNAME: postgres
     POSTGRES_PASSWORD: postgres
     POSTGRES_ROOT_PASSWORD: supersecret
