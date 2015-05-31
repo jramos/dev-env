@@ -124,7 +124,7 @@ When `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. Additiona
     # choose a new GTK theme for Eclipse
     gtk-theme-switch2
 
-By default, the environment uses Clearlooks. To use the installed version of Eclipse, it is assumed that you have [XQuartz](http://xquartz.macosforge.org/landing/) or a similar X11 implementation (e.g. [Cygwin/X](http://en.wikipedia.org/wiki/Cygwin/X)) installed locally.
+By default, the environment uses Clearlooks. To use the installed version of Eclipse or Chromium, it is assumed that you have [XQuartz](http://xquartz.macosforge.org/landing/) or a similar X11 implementation (e.g. [Cygwin/X](http://en.wikipedia.org/wiki/Cygwin/X)) installed locally.
 
 ## Resources
 
