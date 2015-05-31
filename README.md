@@ -26,6 +26,7 @@ A  modern development environment. Requires [vagrant](http://www.vagrantup.com/d
   * Chef, Chef Zero and Puppet
   * Eclipse 4.4
   * Ant and Maven
+  * Chromium Browser
   * build-essentials, misc utilities and dev libs
 
 ## Basic usage
