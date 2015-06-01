@@ -1,6 +1,6 @@
 # dev-env
 
-A  modern development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+My development environment. Requires [vagrant](http://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
 ## System information
 
@@ -31,13 +31,11 @@ A  modern development environment. Requires [vagrant](http://www.vagrantup.com/d
 
 ## Basic usage
 
-### Vagrant
-
 Create and start the VM:
 
     vagrant up
 
-Connect via SSH:
+Connect to it via SSH:
 
     vagrant ssh
 
@@ -45,73 +43,7 @@ Stop the VM:
 
     vagrant halt
 
-Reprovision:
-
-    vagrant up --provision
-
-Destroy:
-
-    vagrant destroy
-
 See the [vagrant CLI docs](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
-
-### Docker Compose
-
-Build the app containers:
-
-    docker-compose build
-
-Start the app containers:
-
-    docker-compose up -d
-
-List all containers:
-
-    docker-compose ps
-
-Run a command on the web container:
-
-    docker-compose run web <some command>
-
-Stop all containers:
-
-    docker-compose stop
-
-Kill all containers:
-
-    docker-compose kill
-
-Destroy all containers:
-
-    docker-compose rm
-
-See the [Docker Compose User Guide](https://docs.docker.com/compose/) for a full list of commands.
-
-## Docker Examples
-
-### Rails
-
-An example script has been provided to initialize a new Rails application. It creates containers for the application, PostgreSQL and Redis, and links them together.
-
-To generate a new Rails app:
-
-    cd examples/rails
-    ./create.sh <app_name>
-
-The application is now in `~/src/rails/<app_name>`:
-
-    cd ~/src/rails/<app_name>
-
-Build and start the containers:
-
-    docker-compose build
-    docker-compose up -d
-
-Create and migrate the database:
-
-    docker-compose run web rake db:create db:migrate
-
-You should now see the default Rails application page at [http://localhost:3000](http://localhost:3000).
 
 ## Shared folders
 
@@ -121,7 +53,7 @@ When `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. Additiona
 
 ## Optional Setup
 
-    # choose a new GTK theme for Eclipse
+    # choose a new GTK theme for X11
     gtk-theme-switch2
 
 By default, the environment uses Clearlooks. To use the installed version of Eclipse or Chromium, it is assumed that you have [XQuartz](http://xquartz.macosforge.org/landing/) or a similar X11 implementation (e.g. [Cygwin/X](http://en.wikipedia.org/wiki/Cygwin/X)) installed locally.
