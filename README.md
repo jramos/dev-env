@@ -96,7 +96,7 @@ An example script has been provided to initialize a new Rails application. It cr
 To generate a new Rails app:
 
     cd examples/rails
-    ./init.sh <app_name>
+    ./create.sh <app_name>
 
 The application is now in `~/src/rails/<app_name>`:
 
