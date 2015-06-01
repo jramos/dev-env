@@ -24,7 +24,7 @@ apt-get install -y $python $java $libs $misc
 if hash eclipse 2>/dev/null; then
   echo "Eclipse already installed"
 else
-  wget -O /tmp/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz
+  wget -O /tmp/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz http://mirrors.xmission.com/eclipse/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz
   tar -C /tmp -zxvf /tmp/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz
   mv /tmp/eclipse /usr/local
   echo "export PATH=\$PATH:/usr/local/eclipse" | tee /etc/profile.d/eclipse.sh
