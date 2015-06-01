@@ -61,9 +61,6 @@ By default, the environment uses Clearlooks. To use the installed version of Ecl
 ## Resources
 
   * [Vagrant Documentation](https://docs.vagrantup.com/v2/)
-  * [Docker User Guide](https://docs.docker.com/userguide/)
-  * [Docker Compose](https://docs.docker.com/compose/)
-  * [Docker Official Images](https://github.com/docker-library/official-images)
 
 ## License
 
