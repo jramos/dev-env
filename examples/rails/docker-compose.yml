@@ -7,8 +7,8 @@ web:
   environment:
     RACK_ENV: development
     RAILS_ENV: development
-    DATABASE_URL: postgres://postgres:postgres@postgres:5432/myapp_development
-    DB_POOL: 1
+    DATABASE_URL: postgres://myapp:mypassword@postgres:5432/myapp_development?pool=1
+    REDIS_URL: redis://redis:6379/myapp_development
   links:
     - redis
     - postgres
@@ -22,7 +22,6 @@ redis:
 postgres:
   image: postgres:9.4
   environment:
-    POSTGRES_DATABASE: myapp_development
-    POSTGRES_USERNAME: postgres
-    POSTGRES_PASSWORD: postgres
-    POSTGRES_ROOT_PASSWORD: supersecret
+    POSTGRES_DB: myapp_development
+    POSTGRES_USER: myapp
+    POSTGRES_PASSWORD: mypassword
