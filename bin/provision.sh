@@ -15,8 +15,8 @@ apt-get upgrade -y
 # system packages
 python="python2.7 python3.4 python-dev python3.4-dev python-pip python3-pip"
 java="oracle-java7-installer oracle-java8-installer oracle-java8-set-default ant maven"
-libs="libxml2-dev libxslt-dev libyaml-dev libcurl4-openssl-dev libjemalloc1 libjemalloc-dev libreadline6-dev libgdbm-dev libncurses5-dev libffi-dev libpq-dev libsqlite3-dev sqlite3"
-misc="git build-essential ca-certificates bzip2 zip unzip gtk-theme-switch gtk2-engines wget curl autoconf automake libtool bison"
+libs="libxml2-dev libxslt-dev libyaml-dev libcurl4-openssl-dev libjemalloc1 libjemalloc-dev libreadline6-dev libgdbm-dev libncurses5-dev libffi-dev libpq-dev libsqlite3-dev sqlite3 qt5-default libqt5webkit5-dev"
+misc="git git-flow build-essential ca-certificates bzip2 zip unzip gtk-theme-switch gtk2-engines wget curl autoconf automake libtool bison"
 
 apt-get install -y $python $java $libs $misc
 

@@ -5,9 +5,10 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = [Etc.getlogin, "-dev"].join
 
   config.vm.network "private_network", type: "dhcp"
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 5432, host: 5432
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+  [3000, 4000, 5000, 5432, 8080].each do |port|
+    config.vm.network "forwarded_port", guest: port, host: port
+  end
 
   config.vm.provider "virtualbox" do |v|
     v.name = [Etc.getlogin, "-dev"].join
