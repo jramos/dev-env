@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |v|
     v.name = [Etc.getlogin, "-dev"].join
-    v.memory = 8192
+    v.memory = 4096
     v.cpus = 8
   end
 
