@@ -7,7 +7,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 ### VM configuration
 
   * Ubuntu 14.04.2 LTS ([ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trusty64))
-  * 8 CPUs; 8 GB RAM; 40 GB SATA
+  * 8 CPUs; 4 GB RAM; 40 GB SATA
   * Private DHCP network
   * SSH agent and X11 forwarding
 
