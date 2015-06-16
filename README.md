@@ -13,12 +13,12 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 ### Languages
 
-  * Java - Oracle 7/8, OpenJDK 7
-  * Scala 2.11 + sbt
-  * Python 2.7/3.4 + pip
-  * Node.js v0.12 + npm
-  * rvm for Ruby/JRuby
-  * gvm for Groovy/Gradle
+  * Java (Oracle 7/8, OpenJDK 7)
+  * Scala (2.11 + sbt)
+  * Python (2.7/3.4 + pip/pip3)
+  * Node.js (0.12 + npm)
+  * rvm (for Ruby/JRuby)
+  * gvm (for Groovy/Gradle)
 
 ### Dev Tools
 

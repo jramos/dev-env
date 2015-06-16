@@ -19,7 +19,8 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
-  config.vm.synced_folder "~/src/", "/home/vagrant/src"
+  config.vm.synced_folder "~/src/", "/home/vagrant/src", create: true
+
   config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
   config.vm.provision "shell", path: "bin/provision.sh"
 end
