@@ -22,7 +22,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 ### Dev Tools
 
-  * Docker 1.6 and Docker Compose
+  * Docker 1.7 and Docker Compose
   * Chef, Chef Zero and Puppet
   * Eclipse 4.4
   * Ant and Maven
