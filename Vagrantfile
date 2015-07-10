@@ -21,6 +21,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "~/src/", "/home/vagrant/src", create: true
 
-  config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+  if File.exists?('~/.gitconfig')
+    config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+  end
+
   config.vm.provision "shell", path: "bin/provision.sh"
 end
