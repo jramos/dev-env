@@ -76,6 +76,10 @@ su - vagrant -c "curl -s get.gvmtool.net | bash"
 curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 apt-get install -y nodejs
 
+# aws
+pip install awscli
+pip install awsebcli
+
 # misc
 su - vagrant -c "gtk-theme-switch2 /usr/share/themes/Clearlooks"
 chmod +x /etc/profile.d/*.sh
