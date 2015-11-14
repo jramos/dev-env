@@ -19,14 +19,17 @@ A development environment. Requires [vagrant](http://www.vagrantup.com/downloads
   * Node.js (0.12 + npm)
   * rvm (for Ruby/JRuby)
   * gvm (for Groovy/Gradle)
+  * PHP5, C/C++, Mono
 
 ### Dev Tools
 
   * Docker 1.7 and Docker Compose
+  * Apache Thrift 0.9.3
   * Chef, Chef Zero and Puppet
   * Eclipse 4.4
   * Ant and Maven
   * Chromium Browser
+  * AWS CLI tools
   * build-essentials, misc utilities and dev libs
 
 ## Basic Usage

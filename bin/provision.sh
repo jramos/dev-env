@@ -67,7 +67,6 @@ apt-get install -y --force-yes sbt
 # rvm
 su - vagrant -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
 su - vagrant -c "\curl -sSL https://get.rvm.io | bash -s stable"
-apt-get install -y bundler
 
 # gvm
 su - vagrant -c "curl -s get.gvmtool.net | bash"
@@ -79,6 +78,28 @@ apt-get install -y nodejs
 # aws
 pip install awscli
 pip install awsebcli
+
+# thrift
+# build deps
+apt-get install -y libboost-dev libboost-test-dev libboost-program-options-dev libboost-system-dev libboost-filesystem-dev libevent-dev automake libtool flex bison pkg-config g++ libssl-dev ant
+# ruby
+apt-get install -y ruby-full ruby-dev ruby-rspec rake
+# python
+apt-get install -y python-all python-all-dev python-all-dbg
+# php
+apt-get install -y php5-dev php5-cli phpunit
+# c/c#
+apt-get install -y libglib2.0-dev mono-gmcs mono-devel libmono-system-web2.0-cil nunit nunit-console
+
+wget -O /tmp/thrift-0.9.3.tar.gz http://ftp.wayne.edu/apache/thrift/0.9.3/thrift-0.9.3.tar.gz
+cd /tmp                       && \
+tar -zxvf thrift-0.9.3.tar.gz && \
+cd thrift-0.9.3/              && \
+./configure                   && \
+make -j8                      && \
+make -j8 install              && \
+cd /tmp                       && \
+rm -rf /tmp/thrift-0.9.3*
 
 # misc
 su - vagrant -c "gtk-theme-switch2 /usr/share/themes/Clearlooks"
