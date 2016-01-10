@@ -6,6 +6,7 @@ echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 select true" | 
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
 
 # apt source for sbt
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 99E82A75642AC823
 echo "deb http://dl.bintray.com/sbt/debian /" | tee /etc/apt/sources.list.d/sbt.list
 
 # update + upgrade system
