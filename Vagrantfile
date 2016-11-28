@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = @hostname
   config.vm.network "private_network", type: "dhcp"
 
-  [3000, 5432, 8000, 8080].each do |port|
+  [3000, 3306, 5432, 8000, 8080].each do |port|
     config.vm.network "forwarded_port", guest: port, host: port
   end
 
