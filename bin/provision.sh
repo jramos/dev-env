@@ -15,5 +15,12 @@ misc="build-essential ca-certificates bzip2 git zip unzip wget curl autoconf aut
 
 apt-get install -y $java $python $misc
 
+if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
+  # generate SSH key and authorize locally
+  su - ubuntu -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa"
+  su - ubuntu -c "chmod 600 ~/.ssh/id_rsa.pub"
+  su - ubuntu -c "cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys"
+fi
+
 # cleanup
 apt-get autoremove -y
