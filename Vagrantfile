@@ -1,19 +1,21 @@
-require 'etc'
+require "etc"
+
+@box_name = "xenial64"
+@hostname = [Etc.getlogin, "-#{@box_name}"].join
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = [Etc.getlogin, "-dev"].join
-
+  config.vm.box = "ubuntu/#{@box_name}"
+  config.vm.hostname = @hostname
   config.vm.network "private_network", type: "dhcp"
 
-  [3000, 4000, 5000, 5432, 6000, 7000, 8000, 8080].each do |port|
+  [3000, 5432, 8000, 8080].each do |port|
     config.vm.network "forwarded_port", guest: port, host: port
   end
 
   config.vm.provider "virtualbox" do |v|
-    v.name = [Etc.getlogin, "-dev"].join
+    v.name = @hostname
     v.memory = 4096
-    v.cpus = 8
+    v.cpus = 4
   end
 
   config.ssh.forward_agent = true
@@ -21,8 +23,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "~/src/", "/home/vagrant/src", type: "nfs", create: true
 
-  if File.exists?('~/.gitconfig')
-    config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+  [".gitconfig", ".gitignore_global"].each do |file|
+    if File.exists?("#{ENV['HOME']}/#{file}")
+      config.vm.provision "file", source: "#{ENV['HOME']}/#{file}", destination: file
+    end
   end
 
   config.vm.provision "shell", path: "bin/provision.sh"
