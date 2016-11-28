@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
-  config.vm.synced_folder "~/src/", "/home/vagrant/src", type: "nfs", create: true
+  config.vm.synced_folder "~/src/", "/home/ubuntu/src", type: "nfs", create: true
 
   [".gitconfig", ".gitignore_global"].each do |file|
     if File.exists?("#{ENV['HOME']}/#{file}")
