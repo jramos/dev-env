@@ -11,18 +11,23 @@ A development environment. Requires [vagrant](http://www.vagrantup.com/downloads
   * Private DHCP network
   * SSH agent and X11 forwarding
 
-### Installed Packages
+### Languages
 
   * Oracle Java 8 (with Unlimited JCE Policy)
-  * Python development libraries (2.7/3.5 + pip/pip3)
-  * Development tools
-    * autoconf / automake
-    * build-essentials
-    * bzip2
-    * ca-certificates
-    * git
-    * unzip / zip
-    * wget / curl
+  * Python + development libraries (2.7/3.5 + pip/pip3)
+  * Node.js v7 + npm
+  * Ruby Version Manager (rvm)
+  * Scala Build Tool (sbt)
+
+### Development Tools
+
+  * autoconf / automake
+  * build-essentials
+  * bzip2
+  * ca-certificates
+  * git
+  * unzip / zip
+  * wget / curl
 
 ## Basic Usage
 
