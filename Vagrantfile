@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
     v.name = @hostname
     v.memory = 4096
     v.cpus = 4
+    v.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
   end
 
   config.ssh.forward_agent = true
