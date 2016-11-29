@@ -21,12 +21,17 @@ apt-get install -y $java $python $misc
 
 # rvm
 su - ubuntu -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
-su - ubuntu -c "\curl -sSL https://get.rvm.io | bash -s stable"
+su - ubuntu -c "\curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3"
 
 # node.js + npm
 curl -sL https://deb.nodesource.com/setup_7.x | bash -
 apt-get install -y nodejs
 npm install npm@latest -g
+
+# golang
+su - ubuntu -c "\curl -sSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -"
+su - ubuntu -c "gvm install go1.7 -B"
+su - ubuntu -c "gvm use go1.7"
 
 if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
   # generate SSH key and authorize locally
