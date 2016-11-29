@@ -10,24 +10,29 @@ A development environment. Requires [vagrant](http://www.vagrantup.com/downloads
   * 4 CPUs; 4 GB RAM; 40 GB SATA
   * Private DHCP network
   * SSH agent and X11 forwarding
+  * Forwarded ports: `3000`, `3306`, `5432`, `8000`, `8080`
 
 ### Languages
 
-  * Oracle Java 8 (with Unlimited JCE Policy)
-  * Python + development libraries (2.7/3.5 + pip/pip3)
-  * Node.js v7 + npm
-  * Ruby Version Manager (rvm)
-  * Scala Build Tool (sbt)
+  * Oracle JDK 8 (with Unlimited JCE Policy)
+  * Python + development files (2.7/3.5, `pip`)
+  * Node.js v7 + `npm`
+  * Ruby 2.3 (via `rvm`)
+  * Go 1.7 (via `gvm`)
+  * `sbt` for Scala
 
 ### Development Tools
 
-  * autoconf / automake
-  * build-essentials
-  * bzip2
-  * ca-certificates
-  * git
-  * unzip / zip
-  * wget / curl
+  * `autoconf`
+  * `automake`
+  * `build-essentials`
+  * `bzip2`
+  * `ca-certificates`
+  * `curl`
+  * `git`
+  * `unzip`
+  * `wget`
+  * `zip`
 
 ## Basic Usage
 
