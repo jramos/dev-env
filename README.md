@@ -15,10 +15,11 @@ A development environment. Requires [vagrant](http://www.vagrantup.com/downloads
 ### Languages
 
   * Oracle JDK 8 (with Unlimited JCE Policy)
-  * Python + development files (2.7/3.5, `pip`)
+  * Python + dev headers/tools (2.7/3.5 + `pip`)
   * Node.js v7 + `npm`
   * Ruby 2.3 (via `rvm`)
   * Go 1.7 (via `gvm`)
+  * PHP 7 + `pear`
   * `sbt` for Scala
 
 ### Development Tools
@@ -28,11 +29,17 @@ A development environment. Requires [vagrant](http://www.vagrantup.com/downloads
   * `build-essentials`
   * `bzip2`
   * `ca-certificates`
+  * `cmake`
   * `curl`
   * `git`
   * `unzip`
   * `wget`
   * `zip`
+
+### Development Libraries
+
+  * `libmysqlclient-dev` for MySQL
+  * `libpq-dev` for PostgreSQL
 
 ## Basic Usage
 
