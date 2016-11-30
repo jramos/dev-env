@@ -51,10 +51,4 @@ if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
 fi
 
 # cleanup
-service_names=(elasticsearch mysql postgresql rabbitmq-server redis-server)
-
-for service_name in "${service_names[@]}"; do
-  service $service_name stop && update-rc.d $service_name disable
-done
-
 apt-get autoremove -y
