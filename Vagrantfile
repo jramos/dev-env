@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "~/src/", "/home/ubuntu/src", type: "nfs", create: true
 
-  [".gitconfig", ".gitignore_global"].each do |file|
+  [".bash_aliases", ".gitconfig", ".gitignore_global"].each do |file|
     if File.exists?("#{ENV['HOME']}/#{file}")
       config.vm.provision "file", source: "#{ENV['HOME']}/#{file}", destination: file
     end

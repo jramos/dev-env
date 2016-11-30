@@ -66,7 +66,7 @@ See the [Vagrant CLI documentation](https://docs.vagrantup.com/v2/cli/index.html
 
 When `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. This will be the `dev-env` checkout directory if you followed the instructions above. Additionally, `~/src` will be created if necessary and mounted as `/home/vagrant/src` in the VM. Development should be done within the `~/src` folder if you want your code to be accessible from the host (e.g. to edit it using a native GUI).
 
-If present, `~/.gitconfig` and `~/.gitignore_global` are copied from the host to the VM when provisioned, as well.
+If present, `~/.bash_aliases`, `~/.gitconfig` and `~/.gitignore_global` are copied from the host to the VM when provisioned, as well.
 
 ## Resources
 
