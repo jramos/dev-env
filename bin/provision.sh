@@ -14,12 +14,12 @@ apt-get upgrade -y
 
 # system packages
 java="oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy"
-python="python-dev python3-dev python-pip python3-pip"
-php="php php-pear"
+langs="python-dev python3-dev python-pip python3-pip php php-pear sbt"
+services="mysql-server mysql-client postgresql postgresql-client redis-server"
 libs="libmysqlclient-dev libpq-dev"
-misc="build-essential cmake ca-certificates bzip2 git zip unzip wget curl autoconf automake sbt"
+misc="build-essential cmake ca-certificates bzip2 git zip unzip wget curl autoconf automake"
 
-apt-get install -y $java $python $php $libs $misc
+DEBIAN_FRONTEND=noninteractive apt-get install -q -y $java $langs $services $libs $misc
 
 # rvm
 su - ubuntu -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"

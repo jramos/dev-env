@@ -22,6 +22,12 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * PHP 7 + `pear`
   * `sbt` for Scala
 
+### Services
+
+  * MySQL 5.7
+  * PostgreSQL 9.5
+  * Redis 3.0
+
 ### Development Tools
 
   * `autoconf`
