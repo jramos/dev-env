@@ -8,18 +8,26 @@ echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | 
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
 echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 
+# apt source for elasticsearch
+\curl -sSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-5.x.list
+
+# apt source for rabbitmq
+\curl -sSL https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key add -
+echo "deb http://www.rabbitmq.com/debian/ testing main" | tee -a /etc/apt/sources.list.d/rabbitmq.list
+
 # update + upgrade system
 apt-get update
 apt-get upgrade -y
 
 # system packages
 java="oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy"
-python="python-dev python3-dev python-pip python3-pip"
-php="php php-pear"
+langs="python-dev python3-dev python-pip python3-pip php php-pear sbt"
+services="elasticsearch mysql-server mysql-client postgresql postgresql-client redis-server rabbitmq-server"
 libs="libmysqlclient-dev libpq-dev"
-misc="build-essential cmake ca-certificates bzip2 git zip unzip wget curl autoconf automake sbt"
+misc="build-essential cmake ca-certificates bzip2 git zip unzip wget curl autoconf automake"
 
-apt-get install -y $java $python $php $libs $misc
+DEBIAN_FRONTEND=noninteractive apt-get install -q -y $java $langs $services $libs $misc
 
 # rvm
 su - ubuntu -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
@@ -43,4 +51,10 @@ if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
 fi
 
 # cleanup
+service_names=(elasticsearch mysql postgresql rabbitmq-server redis-server)
+
+for service_name in "${service_names[@]}"; do
+  service $service_name stop && update-rc.d $service_name disable
+done
+
 apt-get autoremove -y
