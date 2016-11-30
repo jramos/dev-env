@@ -24,8 +24,10 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 ### Services
 
+  * Elasticsearch 5.0
   * MySQL 5.7
   * PostgreSQL 9.5
+  * RabbitMQ 3.6
   * Redis 3.0
 
 ### Development Tools
