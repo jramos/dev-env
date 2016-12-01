@@ -10,7 +10,6 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * 4 CPUs; 4 GB RAM; 40 GB SATA
   * Private DHCP network
   * SSH agent and X11 forwarding
-  * Forwarded ports: `3000`, `3306`, `5432`, `8000`, `8080`
 
 ### Languages
 
@@ -72,7 +71,7 @@ See the [Vagrant CLI documentation](https://docs.vagrantup.com/v2/cli/index.html
 
 ## Shared Folders
 
-When `vagrant up` is called, `pwd` is mounted as `/vagrant` in the VM. This will be the `dev-env` checkout directory if you followed the instructions above. Additionally, `~/src` will be created if necessary and mounted as `/home/vagrant/src` in the VM. Development should be done within the `~/src` folder if you want your code to be accessible from the host (e.g. to edit it using a native GUI).
+When `vagrant up` is called, `~/src` will be created if necessary and mounted as `~/src` in the VM. Development should be done within the `~/src` folder if you want your code to be accessible from the host (e.g. to edit it using a native GUI).
 
 If present, `~/.bash_aliases`, `~/.gitconfig` and `~/.gitignore_global` are copied from the host to the VM when provisioned, as well.
 
