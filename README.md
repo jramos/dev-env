@@ -13,8 +13,8 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
 ### Languages
 
-  * Oracle JDK 8 (with Unlimited JCE Policy)
-  * Python + dev headers/tools (2.7/3.5 + `pip`)
+  * Oracle Java 8 (with Unlimited JCE Policy)
+  * Python + headers/tools (2.7/3.5 + `pip`)
   * Node.js v7 + `npm`
   * Ruby 2.3 (via `rvm`)
   * Go 1.7 (via `gvm`)
@@ -28,6 +28,8 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * PostgreSQL 9.5
   * RabbitMQ 3.6
   * Redis 3.0
+
+Note: all are disabled by default. You can enable with `update-rc.d <service> defaults`.
 
 ### Development Tools
 
