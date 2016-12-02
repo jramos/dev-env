@@ -19,13 +19,15 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_x11 = true
 
   config.vm.synced_folder "", "/vagrant", disabled: true
-  config.vm.synced_folder "~/src/", "/home/ubuntu/src", type: "nfs", create: true
+  config.vm.synced_folder File.join(ENV['HOME'], "src"), "/home/ubuntu/src", type: "nfs", create: true
 
   [".bash_aliases", ".gitconfig", ".gitignore_global"].each do |file|
-    if File.exists?("#{ENV['HOME']}/#{file}")
-      config.vm.provision "file", source: "#{ENV['HOME']}/#{file}", destination: file
+    home_dir_file = File.join(ENV['HOME'], file)
+
+    if File.exists?(home_dir_file)
+      config.vm.provision "file", source: home_dir_file, destination: file
     end
   end
 
-  config.vm.provision "shell", path: "bin/provision.sh"
+  config.vm.provision "shell", path: File.join("bin", "provision.sh")
 end
