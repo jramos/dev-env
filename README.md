@@ -8,7 +8,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
   * Ubuntu 16.04.1 LTS ([ubuntu/xenial64](https://atlas.hashicorp.com/ubuntu/boxes/xenial64))
   * 4 CPUs; 4 GB RAM; 40 GB SATA
-  * Private DHCP network
+  * Private network with mDNS
   * SSH agent and X11 forwarding
 
 ### Languages
@@ -35,6 +35,7 @@ Note: all are disabled by default. You can enable with `update-rc.d <service> de
 
   * `autoconf`
   * `automake`
+  * `avahi-daemon`
   * `build-essentials`
   * `bzip2`
   * `ca-certificates`
@@ -70,6 +71,10 @@ Stop the VM:
     vagrant halt
 
 See the [Vagrant CLI documentation](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
+
+## Advanced Usage
+
+Since mDNS is enabled on the private network, you can connect to the VM from your host machine using its hostname. By default, this is `$USER-xenial64.local`.
 
 ## Shared Folders
 

@@ -25,7 +25,7 @@ java="oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce
 langs="python-dev python3-dev python-pip python3-pip php php-pear sbt"
 services="elasticsearch mysql-server mysql-client postgresql postgresql-client redis-server rabbitmq-server"
 libs="libmysqlclient-dev libpq-dev"
-misc="build-essential cmake ca-certificates bzip2 git zip unzip wget curl autoconf automake"
+misc="autoconf automake avahi-daemon build-essential bzip2 ca-certificates cmake curl git unzip wget zip"
 
 DEBIAN_FRONTEND=noninteractive apt-get install -q -y $java $langs $services $libs $misc
 
