@@ -4,10 +4,6 @@
 add-apt-repository ppa:webupd8team/java
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
 
-# apt source for sbt
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
-echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-
 # apt source for elasticsearch
 \curl -sSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-5.x.list
@@ -22,7 +18,7 @@ apt-get upgrade -y
 
 # system packages
 java="oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy"
-langs="python-dev python3-dev python-pip python3-pip php php-pear sbt"
+langs="python-dev python3-dev python-pip python3-pip php php-pear"
 services="elasticsearch mysql-server mysql-client postgresql postgresql-client redis-server rabbitmq-server"
 libs="libmysqlclient-dev libpq-dev"
 misc="autoconf automake avahi-daemon build-essential bzip2 ca-certificates cmake curl git unzip wget zip"
@@ -42,6 +38,9 @@ npm install npm@latest -g
 su - ubuntu -c "\curl -sSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -"
 su - ubuntu -c "gvm install go1.7 -B"
 su - ubuntu -c "gvm use go1.7"
+
+# SDKMAN!
+su - ubuntu -c "\curl -sSL https://get.sdkman.io | bash"
 
 if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
   # generate SSH key and authorize locally
