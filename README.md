@@ -26,11 +26,12 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
   * Elasticsearch 5.0
   * MySQL 5.7
+  * nginx 1.10
   * PostgreSQL 9.5
   * RabbitMQ 3.6
   * Redis 3.0
 
-Note: all are disabled by default. You can enable with `update-rc.d <service> defaults`.
+All are disabled by default. You can enable with `update-rc.d <service_name> defaults` and launch with `service <service_name> start`.
 
 ### Development Tools
 

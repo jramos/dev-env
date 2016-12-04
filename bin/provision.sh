@@ -23,7 +23,7 @@ apt-get upgrade -y
 # system packages
 java="oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy"
 langs="erlang-base python-dev python3-dev python-pip python3-pip php php-pear"
-services="elasticsearch mysql-server mysql-client postgresql postgresql-client redis-server rabbitmq-server"
+services="elasticsearch mysql-server mysql-client nginx postgresql postgresql-client redis-server rabbitmq-server"
 libs="libmysqlclient-dev libpq-dev"
 tools="autoconf automake avahi-daemon build-essential bzip2 ca-certificates cmake curl git unzip wget zip"
 
@@ -55,7 +55,7 @@ if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
 fi
 
 # cleanup
-service_names=(elasticsearch mysql postgresql rabbitmq-server redis-server)
+service_names=(elasticsearch mysql nginx postgresql rabbitmq-server redis-server)
 
 for service_name in "${service_names[@]}"; do
   service $service_name stop && update-rc.d $service_name disable
