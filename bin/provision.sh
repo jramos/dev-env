@@ -12,13 +12,17 @@ echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /e
 \curl -sSL https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key add -
 echo "deb http://www.rabbitmq.com/debian/ testing main" | tee -a /etc/apt/sources.list.d/rabbitmq.list
 
+# add erlang solutions repo
+curl -O https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+dpkg -i erlang-solutions_1.0_all.deb
+
 # update + upgrade system
 apt-get update
 apt-get upgrade -y
 
 # system packages
 java="oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy"
-langs="python-dev python3-dev python-pip python3-pip php php-pear"
+langs="erlang-base python-dev python3-dev python-pip python3-pip php php-pear"
 services="elasticsearch mysql-server mysql-client postgresql postgresql-client redis-server rabbitmq-server"
 libs="libmysqlclient-dev libpq-dev"
 misc="autoconf automake avahi-daemon build-essential bzip2 ca-certificates cmake curl git unzip wget zip"

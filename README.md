@@ -19,6 +19,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * Ruby 2.3 (via `rvm`)
   * Go 1.7 (via `gvm`)
   * PHP 7 + `pear`
+  * Erlang/OTP 19
   * [SDKMAN!](http://sdkman.io/) for Scala, Groovy
 
 ### Services
