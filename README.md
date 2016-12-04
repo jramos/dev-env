@@ -7,7 +7,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 ### VM Configuration
 
   * Ubuntu 16.04.1 LTS ([ubuntu/xenial64](https://atlas.hashicorp.com/ubuntu/boxes/xenial64))
-  * 4 CPUs; 4 GB RAM; 40 GB SATA
+  * 4 CPUs; 4 GB RAM; 10 GB SATA
   * Private network with mDNS
   * SSH agent and X11 forwarding
 

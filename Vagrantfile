@@ -12,7 +12,11 @@ Vagrant.configure("2") do |config|
     vb.name = @hostname
     vb.memory = 4096
     vb.cpus = 4
+    vb.customize ["modifyvm", :id, "--uart1", "off"]
     vb.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
+    vb.customize ["modifyvm", :id, "--hpet", "on"]
+    vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
+    vb.customize ["modifyvm", :id, "--largepages", "on"]
   end
 
   config.ssh.forward_agent = true
