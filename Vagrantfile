@@ -8,11 +8,11 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = @hostname
   config.vm.network "private_network", type: "dhcp"
 
-  config.vm.provider "virtualbox" do |v|
-    v.name = @hostname
-    v.memory = 4096
-    v.cpus = 4
-    v.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
+  config.vm.provider :virtualbox do |vb|
+    vb.name = @hostname
+    vb.memory = 4096
+    vb.cpus = 4
+    vb.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
   end
 
   config.ssh.forward_agent = true
