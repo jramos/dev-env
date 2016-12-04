@@ -51,6 +51,7 @@ if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
   su - ubuntu -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa"
   su - ubuntu -c "chmod 600 ~/.ssh/id_rsa.pub"
   su - ubuntu -c "cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys"
+  su - ubuntu -c "chmod 600 ~/.ssh/authorized_keys"
 fi
 
 # cleanup
