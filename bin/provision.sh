@@ -12,9 +12,9 @@ echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /e
 \curl -sSL https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key add -
 echo "deb http://www.rabbitmq.com/debian/ testing main" | tee -a /etc/apt/sources.list.d/rabbitmq.list
 
-# add erlang solutions repo
-curl -O https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
-dpkg -i erlang-solutions_1.0_all.deb
+# apt source for erlang
+\curl -sSL https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | apt-key add -
+echo "deb https://packages.erlang-solutions.com/ubuntu xenial contrib" | tee -a /etc/apt/sources.list.d/erlang-solutions.list
 
 # update + upgrade system
 apt-get update
@@ -23,11 +23,11 @@ apt-get upgrade -y
 # system packages
 java="oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy"
 langs="erlang-base python-dev python3-dev python-pip python3-pip php php-pear"
-services="elasticsearch mysql-server mysql-client postgresql postgresql-client redis-server rabbitmq-server"
+services="elasticsearch mysql-server mysql-client nginx postgresql postgresql-client redis-server rabbitmq-server"
 libs="libmysqlclient-dev libpq-dev"
-misc="autoconf automake avahi-daemon build-essential bzip2 ca-certificates cmake curl git unzip wget zip"
+tools="autoconf automake avahi-daemon build-essential bzip2 ca-certificates cmake curl git ntp unzip wget zip"
 
-DEBIAN_FRONTEND=noninteractive apt-get install -q -y $java $langs $services $libs $misc
+DEBIAN_FRONTEND=noninteractive apt-get install -q -y $java $langs $services $libs $tools
 
 # rvm
 su - ubuntu -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
@@ -51,10 +51,11 @@ if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
   su - ubuntu -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa"
   su - ubuntu -c "chmod 600 ~/.ssh/id_rsa.pub"
   su - ubuntu -c "cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys"
+  su - ubuntu -c "chmod 600 ~/.ssh/authorized_keys"
 fi
 
 # cleanup
-service_names=(elasticsearch mysql postgresql rabbitmq-server redis-server)
+service_names=(elasticsearch mysql nginx postgresql rabbitmq-server redis-server)
 
 for service_name in "${service_names[@]}"; do
   service $service_name stop && update-rc.d $service_name disable

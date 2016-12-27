@@ -7,7 +7,7 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 ### VM Configuration
 
   * Ubuntu 16.04.1 LTS ([ubuntu/xenial64](https://atlas.hashicorp.com/ubuntu/boxes/xenial64))
-  * 4 CPUs; 4 GB RAM; 40 GB SATA
+  * 4 CPUs; 4 GB RAM; 10 GB SATA
   * Private network with mDNS
   * SSH agent and X11 forwarding
 
@@ -26,11 +26,12 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
 
   * Elasticsearch 5.0
   * MySQL 5.7
+  * nginx 1.10
   * PostgreSQL 9.5
   * RabbitMQ 3.6
   * Redis 3.0
 
-Note: all are disabled by default. You can enable with `update-rc.d <service> defaults`.
+All are disabled by default. You can enable with `update-rc.d <service_name> defaults` and launch with `service <service_name> start`.
 
 ### Development Tools
 
@@ -43,6 +44,7 @@ Note: all are disabled by default. You can enable with `update-rc.d <service> de
   * `cmake`
   * `curl`
   * `git`
+  * `ntp`
   * `unzip`
   * `wget`
   * `zip`
