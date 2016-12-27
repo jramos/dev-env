@@ -44,6 +44,7 @@ All are disabled by default. You can enable with `update-rc.d <service_name> def
   * `cmake`
   * `curl`
   * `git`
+  * `ntp`
   * `unzip`
   * `wget`
   * `zip`
