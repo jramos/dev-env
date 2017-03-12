@@ -18,26 +18,12 @@ My development environment. Requires [vagrant](http://www.vagrantup.com/download
   * Node.js v7 + `npm`
   * Ruby 2.3 (via `rvm`)
   * Go 1.7 (via `gvm`)
-  * PHP 7 + `pear`
-  * Erlang/OTP 19
   * [SDKMAN!](http://sdkman.io/) for Scala, Groovy
-
-### Services
-
-  * Elasticsearch 5.0
-  * MySQL 5.7
-  * nginx 1.10
-  * PostgreSQL 9.5
-  * RabbitMQ 3.6
-  * Redis 3.0
-
-All are disabled by default. You can enable with `update-rc.d <service_name> defaults` and launch with `service <service_name> start`.
 
 ### Development Tools
 
   * `autoconf`
   * `automake`
-  * `avahi-daemon`
   * `build-essentials`
   * `bzip2`
   * `ca-certificates`
@@ -74,10 +60,6 @@ Stop the VM:
     vagrant halt
 
 See the [Vagrant CLI documentation](https://docs.vagrantup.com/v2/cli/index.html) for a full list of commands.
-
-## Advanced Usage
-
-Since mDNS is enabled on the private network, you can connect to the VM from your host machine using its hostname. By default, this is `$USER-xenial64.local`.
 
 ## Shared Folders
 
