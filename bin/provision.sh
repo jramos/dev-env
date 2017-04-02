@@ -22,7 +22,7 @@ su - ubuntu -c "gvm install go1.7 -B"
 su - ubuntu -c "gvm use go1.7"
 
 # node.js + npm
-curl -sL https://deb.nodesource.com/setup_7.x | bash -
+curl -sL https://deb.nodesource.com/setup_6.x | bash -
 apt-get install -y nodejs
 npm install npm@latest -g
 
@@ -33,8 +33,8 @@ su - ubuntu -c "\curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3"
 # SDKMAN!
 su - ubuntu -c "\curl -sSL https://get.sdkman.io | bash"
 
+# generate SSH key and authorize locally
 if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
-  # generate SSH key and authorize locally
   su - ubuntu -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa"
   su - ubuntu -c "chmod 600 ~/.ssh/id_rsa.pub"
   su - ubuntu -c "cat ~/.ssh/id_rsa.pub | tee -a ~/.ssh/authorized_keys"

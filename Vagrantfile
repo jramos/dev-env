@@ -2,10 +2,14 @@ require "etc"
 
 @box_name = "xenial64"
 @hostname = [Etc.getlogin, "-", @box_name].join
+@vm_cpus = 4
+@vm_mem = 4096
 @vm_opts = [
-  ["--uart1", "off"], ["--uartmode1", "disconnected"],
-  ["--hpet", "on"], ["--hwvirtex", "on"],
-  ["--largepages", "on"]
+  ["--hpet", "on"],
+  ["--hwvirtex", "on"],
+  ["--largepages", "on"],
+  ["--uart1", "off"],
+  ["--uartmode1", "disconnected"]
 ]
 
 Vagrant.configure("2") do |config|
@@ -15,12 +19,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.name = @hostname
-    vb.memory = 4096
-    vb.cpus = 4
+    vb.memory = @vm_mem
+    vb.cpus = @vm_cpus
 
-    @vm_opts.each do |opts|
-      vb.customize ["modifyvm", :id] + opts
-    end
+    @vm_opts.each {|opts| vb.customize ["modifyvm", :id] + opts}
   end
 
   config.ssh.forward_agent = true
