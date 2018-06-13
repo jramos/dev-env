@@ -1,0 +1,9 @@
+[user]
+        name = Justin Ramos
+        email = justin.ramos@gmail.com
+[push]
+        default = simple
+[color]
+        ui = auto
+[commit]
+        gpgSign = true

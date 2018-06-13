@@ -1,0 +1,13 @@
+set show-all-if-ambiguous on
+
+# Tab cycles between possible completions
+# Forward: Tab; backward: Shift-Tab
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+
+# Arrow up and down cycles through history
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+
+# Ctrl-q displays the list of possible completions
+Control-q: complete
