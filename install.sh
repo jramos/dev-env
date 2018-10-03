@@ -23,6 +23,8 @@ $DEBUG echo "export HISTSIZE=5000" | $DEBUG tee -a $HOME/.bashrc
 $DEBUG echo "shopt -s histappend" | $DEBUG tee -a $HOME/.bashrc
 
 # dotfiles
+$DEBUG mkdir -p $HOME/.ssh
+$DEBUG chmod 700 $HOME/.ssh
 $DEBUG cp $(find $DIR/dotfiles -type f | xargs) $HOME
 
 # homebrew dependencies
