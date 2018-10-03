@@ -3,12 +3,12 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias .bash_aliases="source ~/.bash_aliases"
-alias .bash_profile="source ~/.bash_profile"
-alias .bashrc="source ~/.bashrc"
+alias .bash_aliases='source ~/.bash_aliases'
+alias .bash_profile='source ~/.bash_profile'
+alias .bashrc='source ~/.bashrc'
 
-alias hard-reboot="sudo reboot -f"
-alias poweroff="sudo shutdown -hP now"
+alias hard-reboot='sudo reboot -f'
+alias poweroff='sudo shutdown -hP now'
 
 alias db='docker build'
 alias dbnc='docker build --no-cache'
@@ -30,25 +30,34 @@ alias dcub='docker-compose up --build'
 
 alias dns-flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
-alias gita='git add'
-alias gitaa='git add --all'
-alias gitb='git branch'
-alias gitc='git commit'
-alias gitco="git checkout"
-alias gitd="git diff"
-alias gitdh="git diff HEAD"
-alias gitf='git fetch'
-alias gitl='git log'
-alias gitp='git pull'
-alias gitpu='git push'
-alias gitmnff='git merge --no-ff'
-alias gitr='git reset'
-alias gitrh='git reset HEAD'
-alias gitrhh='git reset HEAD --hard'
-alias gitrm='git rm'
-alias gitrmr="git rm -r"
-alias gits='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gbl='git branch -l'
+alias gblr='git branch -lr'
+alias gc='git commit'
+alias gcl='git clean -d -f'
+alias gco='git checkout'
+alias gcom'=git checkout master'
+alias gd='git diff'
+alias gdh='git diff HEAD'
+alias gf='git fetch'
+alias gfp='git fetch --prune'
+alias gl='git log'
+alias glp='git log -p'
+alias gp='git pull'
+alias gpu='git push'
+alias gpuf='git push --force'
+alias gmnff='git merge --no-ff'
+alias gmmnff='current_branch=$(git rev-parse --abbrev-ref HEAD) && git checkout master && git pull && git checkout $current_branch && git merge --no-ff master'
+alias gr='git reset'
+alias grh='git reset HEAD'
+alias grhh='git reset HEAD --hard'
+alias grm='git rm'
+alias grmr='git rm -r'
+alias gs='git status'
 
+alias k='kubectl'
 alias ka='kubectl apply'
 alias kc='kubectl config'
 alias kcc='kubectl config current-context'
@@ -75,4 +84,16 @@ alias kl='kubectl logs'
 alias klf='kubectl logs -f'
 alias krun='kubectl run -it'
 
-alias run-k8s-gcloud='kubectl run cloud-sdk --rm -it --image google/cloud-sdk:latest -- bash'
+alias kshell='kubectl run -R --rm -it kshell-justin --image=alpine --restart=Never -- sh'
+alias kgcloud='kubectl run -R --rm -it kshell-justin --image=google/cloud-sdk:alpine --restart=Never -- sh'
+alias k8s-dashboard='open http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/'
+
+b64d () {
+  echo -n '$1' | base64 -D ; echo
+}
+
+b64e () {
+  echo -n '$1' | base64
+}
+
+[ -f "${HOME}/.bash_aliases.local" ] && . ${HOME}/.bash_aliases.local
