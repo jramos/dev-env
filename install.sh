@@ -63,6 +63,7 @@ CASKS=(
   google-chrome
   google-cloud-sdk
   gpg-suite
+  intel-power-gadget
   istat-menus
   iterm2
   keybase
