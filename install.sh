@@ -57,12 +57,17 @@ TAPS=(
 CASKS=(
   atom
   burp-suite
+  cleanmymac
   docker-edge
   gimp
   google-chrome
   google-cloud-sdk
   gpg-suite
+  istat-menus
   iterm2
+  keybase
+  kubernetic
+  postico
   slack
   sublime-text
   tunnelblick
