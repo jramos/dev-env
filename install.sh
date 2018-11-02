@@ -22,17 +22,31 @@ $DEBUG echo "export HISTCONTROL=erasedups:ignorespace" | $DEBUG tee -a $HOME/.ba
 $DEBUG echo "export HISTSIZE=5000" | $DEBUG tee -a $HOME/.bashrc
 $DEBUG echo "shopt -s histappend" | $DEBUG tee -a $HOME/.bashrc
 
+# etc
+$DEBUG sudo cp -r $DIR/etc/* /etc/
+
 # dotfiles
 $DEBUG mkdir -p $HOME/.ssh
 $DEBUG chmod 700 $HOME/.ssh
-$DEBUG cp $(find $DIR/dotfiles -type f | xargs) $HOME
 
-# homebrew dependencies
-$DEBUG sudo xcode-select --install
-$DEBUG sudo xcodebuild -license
+read -p 'Link dotfiles? (y/N) '
+
+if [[ $REPLY =~ ^[Yy] ]]; then
+  for FILE in $(find $DIR/dotfiles -type f); do
+    $DEBUG ln -s $FILE $HOME/${FILE/.\/dotfiles\//}
+  done
+else
+  $DEBUG cp $(find $DIR/dotfiles -type f | xargs) $HOME
+fi
 
 # homebrew
-$DEBUG ruby -e "$($DEBUG curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ -z "$(which brew)" ]; then
+  $DEBUG sudo xcode-select --install
+  $DEBUG sudo xcodebuild -license
+  $DEBUG ruby -e "$($DEBUG curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+$DEBUG brew update
 
 TAPS=(
   homebrew/cask
@@ -64,11 +78,15 @@ PACKAGES=(
   cfssl
   cmake
   curl
+  dep
+  dialog
   docker-completion
   docker-compose
   docker-compose-completion
   git
   git-flow
+  git-secret
+  gnupg
   go
   htop
   jq
@@ -78,11 +96,19 @@ PACKAGES=(
   kubernetes-cli
   kubernetes-helm
   make
+  makedepend
   netcat
   nvm
   openssl
+  pkg-config
   python
   python@2
+  qemu
+  readline
+  ruby
+  sqlite
+  terraform
+  unrar
   vault
   vim
   watch
