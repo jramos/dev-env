@@ -58,6 +58,7 @@ CASKS=(
   atom
   burp-suite
   cleanmymac
+  copyclip
   docker-edge
   gimp
   google-chrome
