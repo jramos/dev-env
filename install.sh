@@ -95,6 +95,7 @@ PACKAGES=(
   git-secret
   gnupg
   go
+  hh
   htop
   jq
   jsonnet
