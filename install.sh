@@ -134,3 +134,7 @@ for CASK in "${CASKS[@]}"; do
 done
 
 $DEBUG brew install "${PACKAGES[@]}"
+
+# post-install
+$DEBUG hstr --show-configuration | $DEBUG tee -a $HOME/.bashrc
+$DEBUG echo "bind '\"\C-r\": \"\C-ahstr -- \C-j\"'" | $DEBUG tee -a $HOME/.bashrc
