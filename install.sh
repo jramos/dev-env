@@ -95,6 +95,7 @@ PACKAGES=(
   git-secret
   gnupg
   go
+  graphviz
   hh
   htop
   jq
