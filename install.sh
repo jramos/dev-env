@@ -33,7 +33,9 @@ read -p 'Link dotfiles? (y/N) '
 
 if [[ $REPLY =~ ^[Yy] ]]; then
   for FILE in $(find $DIR/dotfiles -type f); do
-    $DEBUG ln -s $FILE $HOME/${FILE/.\/dotfiles\//}
+    FILE_PATH=${FILE/.\/dotfiles\//}
+    $DEBUG rm -f $HOME/${FILE_PATH}
+    $DEBUG ln -s $FILE $HOME/${FILE_PATH}
   done
 else
   $DEBUG cp $(find $DIR/dotfiles -type f | xargs) $HOME
