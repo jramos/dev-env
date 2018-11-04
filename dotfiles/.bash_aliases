@@ -3,10 +3,15 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias a.='atom .'
+
 alias .bash_aliases='source ~/.bash_aliases'
 alias .bash_profile='source ~/.bash_profile'
 alias .bashrc='source ~/.bashrc'
 
+alias disable-tm-local='sudo tmutil disablelocal'
+alias dns-flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
+alias generate-new-mac="sudo ifconfig en0 down && sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/:$//') && sudo ifconfig en0 up"
 alias hard-reboot='sudo reboot -f'
 alias poweroff='sudo shutdown -hP now'
 
@@ -28,7 +33,6 @@ alias dcru='docker-compose run'
 alias dcu='docker-compose up'
 alias dcub='docker-compose up --build'
 
-alias dns-flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
 alias ga='git add'
 alias gaa='git add --all'
@@ -61,6 +65,7 @@ alias k='kubectl'
 alias ka='kubectl apply'
 alias kc='kubectl config'
 alias kcc='kubectl config current-context'
+alias kcuc='kubectl config use-context'
 alias kd='kubectl describe'
 alias kdel='kubectl delete'
 alias kexec='kubectl exec -it'
@@ -86,7 +91,7 @@ alias krun='kubectl run -it'
 
 alias kshell='kubectl run -R --rm -it kshell-justin --image=alpine --restart=Never -- sh'
 alias kgcloud='kubectl run -R --rm -it kshell-justin --image=google/cloud-sdk:alpine --restart=Never -- sh'
-alias k8s-dashboard='open http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/'
+alias kdash='((sleep 3; open http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/) &) && kubectl proxy'
 
 b64d () {
   echo -n '$1' | base64 -D ; echo
