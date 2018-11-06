@@ -9,6 +9,9 @@ alias .bash_aliases='source ~/.bash_aliases'
 alias .bash_profile='source ~/.bash_profile'
 alias .bashrc='source ~/.bashrc'
 
+alias bup="brew update && brew upgrade"
+alias bi="brew install"
+
 alias disable-tm-local='sudo tmutil disablelocal'
 alias dns-flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias generate-new-mac="sudo ifconfig en0 down && sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/:$//') && sudo ifconfig en0 up"
@@ -32,7 +35,6 @@ alias dcrbu='docker-compose kill && docker-compose rm -f && docker-compose build
 alias dcru='docker-compose run'
 alias dcu='docker-compose up'
 alias dcub='docker-compose up --build'
-
 
 alias ga='git add'
 alias gaa='git add --all'
