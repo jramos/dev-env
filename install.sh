@@ -33,9 +33,9 @@ read -p 'Link dotfiles? (y/N) '
 
 if [[ $REPLY =~ ^[Yy] ]]; then
   for FILE in $(find $DIR/dotfiles -type f); do
-    FILE_PATH=${FILE/.\/dotfiles\//}
-    $DEBUG rm -f $HOME/${FILE_PATH}
-    $DEBUG ln -s $FILE $HOME/${FILE_PATH}
+    FILE_PATH=${FILE#"${DIR}/dotfiles"/}
+    $DEBUG rm -f ${HOME}/${FILE_PATH}
+    $DEBUG ln -s $FILE ${HOME}/${FILE_PATH}
   done
 else
   $DEBUG cp $(find $DIR/dotfiles -type f | xargs) $HOME
@@ -122,6 +122,7 @@ PACKAGES=(
   unrar
   vault
   vim
+  wagoodman/dive/dive
   watch
   wget
   xz
