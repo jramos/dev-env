@@ -5,9 +5,9 @@ alias .....='cd ../../../..'
 
 alias a.='atom .'
 
-alias .bash_aliases='source ~/.bash_aliases'
-alias .bash_profile='source ~/.bash_profile'
-alias .bashrc='source ~/.bashrc'
+alias .ba='source ~/.bash_aliases'
+alias .bp='source ~/.bash_profile'
+alias .brc='source ~/.bashrc'
 
 alias bup="brew update && brew upgrade"
 alias bi="brew install"
