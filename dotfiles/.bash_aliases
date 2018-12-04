@@ -6,8 +6,13 @@ alias .....='cd ../../../..'
 alias a.='atom .'
 
 alias .ba='source ~/.bash_aliases'
+alias .bal='source ~/.bash_aliases.local'
 alias .bp='source ~/.bash_profile'
 alias .brc='source ~/.bashrc'
+alias v.ba='vi ~/.bash_aliases'
+alias v.bal='vi ~/.bash_aliases.local'
+alias v.bp='vi ~/.bash_profile'
+alias v.brc='vi ~/.bashrc'
 
 alias bup="brew update && brew upgrade"
 alias bi="brew install"
@@ -54,6 +59,7 @@ alias glp='git log -p'
 alias gp='git pull'
 alias gpu='git push'
 alias gpuf='git push --force'
+alias gpusuo='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias gmnff='git merge --no-ff'
 alias gmmnff='current_branch=$(git rev-parse --abbrev-ref HEAD) && git checkout master && git pull && git checkout $current_branch && git merge --no-ff master'
 alias gr='git reset'
