@@ -51,6 +51,7 @@ fi
 $DEBUG brew update
 
 TAPS=(
+  caskformula/caskformula
   homebrew/cask
   homebrew/cask-drivers
   homebrew/cask-versions
@@ -66,6 +67,7 @@ CASKS=(
   google-chrome
   google-cloud-sdk
   gpg-suite
+  inkscape
   intel-power-gadget
   istat-menus
   iterm2
