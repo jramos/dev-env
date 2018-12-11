@@ -7,3 +7,5 @@
         ui = auto
 [commit]
         gpgSign = true
+[credential]
+	helper = osxkeychain
