@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -21,6 +21,10 @@ $DEBUG echo "export GOPATH=\$HOME/go" | $DEBUG tee -a $HOME/.bashrc
 $DEBUG echo "export HISTCONTROL=erasedups:ignorespace" | $DEBUG tee -a $HOME/.bashrc
 $DEBUG echo "export HISTSIZE=5000" | $DEBUG tee -a $HOME/.bashrc
 $DEBUG echo "shopt -s histappend" | $DEBUG tee -a $HOME/.bashrc
+
+$DEBUG echo "source $HOME/.bashrc"  | $DEBUG tee -a $HOME/.bash_profile
+$DEBUG echo "source $HOME/.bash_aliases"  | $DEBUG tee -a $HOME/.bash_profile
+$DEBUG echo "[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion" | $DEBUG tee -a $HOME/.bash_profile
 
 # etc
 $DEBUG sudo cp -r $DIR/etc/* /etc/
@@ -93,7 +97,6 @@ PACKAGES=(
   dialog
   docker-completion
   docker-compose
-  docker-compose-completion
   git
   git-flow
   git-secret
@@ -142,5 +145,6 @@ done
 $DEBUG brew install "${PACKAGES[@]}"
 
 # post-install
+$DEBUG gcloud components install beta cloud_sql_proxy cloud-build-local docker-credential-gcr kubectl
 $DEBUG hstr --show-configuration | $DEBUG tee -a $HOME/.bashrc
 $DEBUG echo "bind '\"\C-r\": \"\C-ahstr -- \C-j\"'" | $DEBUG tee -a $HOME/.bashrc
