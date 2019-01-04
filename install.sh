@@ -10,141 +10,156 @@ if [ ! "${1}" = "--yes" ]; then
   DEBUG=__debug
 fi
 
-# bin
-$DEBUG mkdir -p $HOME/bin
-$DEBUG cp -r $DIR/bin/*.sh $HOME/bin
-$DEBUG chmod +x $HOME/bin/*.sh
-$DEBUG echo "PATH=\$PATH:\$HOME/bin" | $DEBUG tee -a $HOME/.bashrc
+read -p 'Setup home directory? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  $DEBUG mkdir -p $HOME/bin
+  $DEBUG cp -r $DIR/bin/*.sh $HOME/bin
+  $DEBUG chmod +x $HOME/bin/*.sh
+  $DEBUG echo "PATH=\$PATH:\$HOME/bin" | $DEBUG tee -a $HOME/.bashrc
 
-# bash settings
-$DEBUG echo "export GOPATH=\$HOME/go" | $DEBUG tee -a $HOME/.bashrc
-$DEBUG echo "export HISTCONTROL=erasedups:ignorespace" | $DEBUG tee -a $HOME/.bashrc
-$DEBUG echo "export HISTSIZE=5000" | $DEBUG tee -a $HOME/.bashrc
-$DEBUG echo "shopt -s histappend" | $DEBUG tee -a $HOME/.bashrc
+  # bash settings
+  $DEBUG echo "export GOPATH=\$HOME/go" | $DEBUG tee -a $HOME/.bashrc
+  $DEBUG echo "export HISTCONTROL=erasedups:ignorespace" | $DEBUG tee -a $HOME/.bashrc
+  $DEBUG echo "export HISTSIZE=5000" | $DEBUG tee -a $HOME/.bashrc
+  $DEBUG echo "shopt -s histappend" | $DEBUG tee -a $HOME/.bashrc
 
-$DEBUG echo "source $HOME/.bashrc"  | $DEBUG tee -a $HOME/.bash_profile
-$DEBUG echo "source $HOME/.bash_aliases"  | $DEBUG tee -a $HOME/.bash_profile
-$DEBUG echo "[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion" | $DEBUG tee -a $HOME/.bash_profile
+  $DEBUG echo "source $HOME/.bashrc"  | $DEBUG tee -a $HOME/.bash_profile
+  $DEBUG echo "source $HOME/.bash_aliases"  | $DEBUG tee -a $HOME/.bash_profile
+  $DEBUG echo "[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion" | $DEBUG tee -a $HOME/.bash_profile
 
-# etc
-$DEBUG sudo cp -r $DIR/etc/* /etc/
+  # ssh
+  $DEBUG mkdir -p $HOME/.ssh
+  $DEBUG chmod 700 $HOME/.ssh
+fi
 
-# dotfiles
-$DEBUG mkdir -p $HOME/.ssh
-$DEBUG chmod 700 $HOME/.ssh
+read -p 'Add /etc files? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  $DEBUG sudo cp -r $DIR/etc/* /etc/
+fi
 
-read -p 'Link dotfiles? (y/N) '
-
+read -p 'Install dotfile symlinks? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   for FILE in $(find $DIR/dotfiles -type f); do
     FILE_PATH=${FILE#"${DIR}/dotfiles"/}
     $DEBUG rm -f ${HOME}/${FILE_PATH}
     $DEBUG ln -s $FILE ${HOME}/${FILE_PATH}
   done
-else
-  $DEBUG cp $(find $DIR/dotfiles -type f | xargs) $HOME
 fi
 
-# homebrew
-if [ -z "$(which brew)" ]; then
-  $DEBUG sudo xcode-select --install
-  $DEBUG sudo xcodebuild -license
-  $DEBUG ruby -e "$($DEBUG curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+read -p 'Install homebrew? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  # homebrew
+  if [ -z "$(which brew)" ]; then
+    $DEBUG sudo xcode-select --install
+    $DEBUG sudo xcodebuild -license
+    $DEBUG ruby -e "$($DEBUG curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  $DEBUG brew update
+
+  TAPS=(
+    caskformula/caskformula
+    homebrew/cask
+    homebrew/cask-drivers
+    homebrew/cask-versions
+  )
+
+  for TAP in "${TAPS[@]}"; do
+    $DEBUG brew tap --full ${TAP}
+  done
+
+  CASKS=(
+    atom
+    bettertouchtool
+    burp-suite
+    copyclip
+    docker-edge
+    gimp
+    google-chrome
+    google-cloud-sdk
+    gpg-suite
+    intel-power-gadget
+    istat-menus
+    iterm2
+    keybase
+    kubernetic
+    postico
+    slack
+    sublime-text
+    tor-browser
+    tunnelblick
+    xquartz
+  )
+
+  for CASK in "${CASKS[@]}"; do
+    $DEBUG brew cask install ${CASK}
+  done
+
+  PACKAGES=(
+    ark
+    autoconf
+    automake
+    awscli
+    bash-completion
+    certbot
+    cfssl
+    cmake
+    curl
+    dep
+    dialog
+    dive
+    docker-completion
+    docker-compose
+    git
+    git-flow
+    git-secret
+    gnupg
+    go
+    graphviz
+    hh
+    htop
+    ipfs
+    jq
+    jsonnet
+    kompose
+    kops
+    ksonnet/tap/ks
+    kubernetes-cli
+    kubernetes-helm
+    make
+    makedepend
+    metasploit-framework
+    netcat
+    nvm
+    openssl
+    openvpn
+    pkg-config
+    python
+    python@2
+    qemu
+    readline
+    ruby
+    sshfs
+    sqlite
+    terraform
+    unrar
+    vault
+    vim
+    wagoodman/dive/dive
+    watch
+    webp
+    wget
+    xz
+    yq
+  )
+
+  $DEBUG brew install "${PACKAGES[@]}"
 fi
 
-$DEBUG brew update
-
-TAPS=(
-  caskformula/caskformula
-  homebrew/cask
-  homebrew/cask-drivers
-  homebrew/cask-versions
-)
-
-CASKS=(
-  atom
-  burp-suite
-  cleanmymac
-  copyclip
-  docker-edge
-  gimp
-  google-chrome
-  google-cloud-sdk
-  gpg-suite
-  inkscape
-  intel-power-gadget
-  istat-menus
-  iterm2
-  keybase
-  kubernetic
-  postico
-  slack
-  sublime-text
-  tunnelblick
-  xquartz
-)
-
-PACKAGES=(
-  autoconf
-  automake
-  awscli
-  bash-completion
-  certbot
-  cfssl
-  cmake
-  curl
-  dep
-  dialog
-  docker-completion
-  docker-compose
-  git
-  git-flow
-  git-secret
-  gnupg
-  go
-  graphviz
-  hh
-  htop
-  jq
-  jsonnet
-  kops
-  ksonnet/tap/ks
-  kubernetes-cli
-  kubernetes-helm
-  make
-  makedepend
-  netcat
-  nvm
-  openssl
-  pkg-config
-  python
-  python@2
-  qemu
-  readline
-  ruby
-  sqlite
-  terraform
-  unrar
-  vault
-  vim
-  wagoodman/dive/dive
-  watch
-  wget
-  xz
-  yq
-)
-
-for TAP in "${TAPS[@]}"; do
-  $DEBUG brew tap --full ${TAP}
-done
-
-for CASK in "${CASKS[@]}"; do
-  $DEBUG brew cask install ${CASK}
-done
-
-$DEBUG brew install "${PACKAGES[@]}"
-
-# post-install
-$DEBUG gcloud components install beta cloud_sql_proxy cloud-build-local docker-credential-gcr kubectl
-$DEBUG hstr --show-configuration | $DEBUG tee -a $HOME/.bashrc
-$DEBUG echo "bind '\"\C-r\": \"\C-ahstr -- \C-j\"'" | $DEBUG tee -a $HOME/.bashrc
+read -p 'Run post-install? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  # post-install
+  $DEBUG gcloud components install beta cloud_sql_proxy cloud-build-local docker-credential-gcr kubectl
+  $DEBUG hstr --show-configuration | $DEBUG tee -a $HOME/.bashrc
+  $DEBUG echo "bind '\"\C-r\": \"\C-ahstr -- \C-j\"'" | $DEBUG tee -a $HOME/.bashrc
+fi
