@@ -84,6 +84,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     keybase
     kubernetic
     metasploit
+    osxfuse
     postico
     slack
     sublime-text
