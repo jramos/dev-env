@@ -91,6 +91,7 @@ PACKAGES=(
   bash-completion
   certbot
   cfssl
+  circleci
   cmake
   curl
   dep
