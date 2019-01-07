@@ -157,6 +157,68 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG brew install "${PACKAGES[@]}"
 fi
 
+read -p 'Install atom packages? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  ATOM_PACKAGES=(
+    atom-beautify
+    atom-clock
+    atom-ide-ui
+    atom-jinja2
+    atom-typescript
+    atom-wrap-in-tag
+    auto-update-plus
+    autocomplete
+    autocomplete-json
+    autocomplete-modules
+    browse
+    build
+    busy-signal
+    ctrl-dir-scroll
+    docblockr
+    editorconfig
+    file-icons
+    git-blame
+    git-time-machine
+    hey-pane
+    highlight-selected
+    ide-flowtype
+    ide-json
+    intentions
+    json-converter
+    json-schema
+    language-docker
+    language-ejs
+    language-jsonnet
+    language-markdown
+    language-terraform
+    linter
+    linter-docker
+    linter-eslint
+    linter-golinter
+    linter-js-yaml
+    linter-terraform-syntax
+    linter-ui-default
+    multi-cursor
+    plist-converter
+    pretty-json
+    satisfy-dependencies
+    set-syntax
+    sort-lines
+    split-diff
+    sublime
+    sublime-block-comment
+    Sublime-Style-Column-Selection
+    sublime-word-navigation
+    sublimify
+    tag
+    terraform-fmt
+    text-manipulation
+    todo-show
+  )
+
+  $DEBUG apm install "${ATOM_PACKAGES[@]}"
+fi
+
 read -p 'Run post-install? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   # post-install
