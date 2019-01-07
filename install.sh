@@ -83,6 +83,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     iterm2
     keybase
     kubernetic
+    metasploit
     postico
     slack
     sublime-text
@@ -129,7 +130,6 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     kubernetes-helm
     make
     makedepend
-    metasploit-framework
     netcat
     nvm
     openssl
