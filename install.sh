@@ -103,7 +103,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     bash-completion
     certbot
     cfssl
-    circlecli
+    circleci
     cmake
     curl
     dep
