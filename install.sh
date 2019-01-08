@@ -136,6 +136,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     openssl
     openvpn
     pkg-config
+    postgresql
     python
     python@2
     qemu
@@ -218,6 +219,26 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   )
 
   $DEBUG apm install "${ATOM_PACKAGES[@]}"
+fi
+
+read -p 'Install npm packages? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  NPM_PACKAGES=(
+    aws-profile-switcher
+    yarn
+  )
+
+  $DEBUG npm install -g "${NPM_PACKAGES[@]}"
+fi
+
+read -p 'Install python packages? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  PYTHON_PACKAGES=(
+    gTTS
+    requests
+  )
+
+  $DEBUG pip install "${PYTHON_PACKAGES[@]}"
 fi
 
 read -p 'Run post-install? (y/N) '
