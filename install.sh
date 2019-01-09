@@ -15,19 +15,6 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG mkdir -p $HOME/bin
   $DEBUG cp -r $DIR/bin/*.sh $HOME/bin
   $DEBUG chmod +x $HOME/bin/*.sh
-  $DEBUG echo "PATH=\$PATH:\$HOME/bin" | $DEBUG tee -a $HOME/.bashrc
-
-  # bash settings
-  $DEBUG echo "export GOPATH=\$HOME/go" | $DEBUG tee -a $HOME/.bashrc
-  $DEBUG echo "export HISTCONTROL=erasedups:ignorespace" | $DEBUG tee -a $HOME/.bashrc
-  $DEBUG echo "export HISTSIZE=5000" | $DEBUG tee -a $HOME/.bashrc
-  $DEBUG echo "shopt -s histappend" | $DEBUG tee -a $HOME/.bashrc
-
-  $DEBUG echo "source $HOME/.bashrc"  | $DEBUG tee -a $HOME/.bash_profile
-  $DEBUG echo "source $HOME/.bash_aliases"  | $DEBUG tee -a $HOME/.bash_profile
-  $DEBUG echo "[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion" | $DEBUG tee -a $HOME/.bash_profile
-
-  # ssh
   $DEBUG mkdir -p $HOME/.ssh
   $DEBUG chmod 700 $HOME/.ssh
 fi
@@ -41,8 +28,8 @@ read -p 'Install dotfile symlinks? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   for FILE in $(find $DIR/dotfiles -type f); do
     FILE_PATH=${FILE#"${DIR}/dotfiles"/}
-    $DEBUG rm -f ${HOME}/${FILE_PATH}
-    $DEBUG ln -s $FILE ${HOME}/${FILE_PATH}
+    $DEBUG mv -f $HOME/$FILE_PATH $HOME/$FILE_PATH.bak-$(date +%Y-%m-%d)
+    $DEBUG ln -s $FILE $HOME/$FILE_PATH
   done
 fi
 
@@ -57,18 +44,18 @@ if [[ $REPLY =~ ^[Yy] ]]; then
 
   $DEBUG brew update
 
-  TAPS=(
+  BREW_TAP=(
     caskformula/caskformula
     homebrew/cask
     homebrew/cask-drivers
     homebrew/cask-versions
   )
 
-  for TAP in "${TAPS[@]}"; do
+  for TAP in "${BREW_TAP[@]}"; do
     $DEBUG brew tap --full ${TAP}
   done
 
-  CASKS=(
+  BREW_CASK=(
     atom
     bettertouchtool
     burp-suite
@@ -94,11 +81,11 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     xquartz
   )
 
-  for CASK in "${CASKS[@]}"; do
+  for CASK in "${BREW_CASK[@]}"; do
     $DEBUG brew cask install ${CASK}
   done
 
-  PACKAGES=(
+  BREW=(
     ark
     autoconf
     automake
@@ -157,12 +144,12 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     yq
   )
 
-  $DEBUG brew install "${PACKAGES[@]}"
+  $DEBUG brew install "${BREW[@]}"
 fi
 
-read -p 'Install atom packages? (y/N) '
+read -p 'Install apm packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
-  ATOM_PACKAGES=(
+  APM=(
     atom-beautify
     atom-clock
     atom-ide-ui
@@ -219,33 +206,25 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     todo-show
   )
 
-  $DEBUG apm install "${ATOM_PACKAGES[@]}"
+  $DEBUG apm install "${APM[@]}"
 fi
 
 read -p 'Install npm packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
-  NPM_PACKAGES=(
+  NPM=(
     aws-profile-switcher
     yarn
   )
 
-  $DEBUG npm install -g "${NPM_PACKAGES[@]}"
+  $DEBUG npm install -g "${NPM[@]}"
 fi
 
-read -p 'Install python packages? (y/N) '
+read -p 'Install pip packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
-  PYTHON_PACKAGES=(
+  PIP=(
     gTTS
     requests
   )
 
-  $DEBUG pip install "${PYTHON_PACKAGES[@]}"
-fi
-
-read -p 'Run post-install? (y/N) '
-if [[ $REPLY =~ ^[Yy] ]]; then
-  # post-install
-  $DEBUG gcloud components install beta cloud_sql_proxy cloud-build-local docker-credential-gcr kubectl
-  $DEBUG hstr --show-configuration | $DEBUG tee -a $HOME/.bashrc
-  $DEBUG echo "bind '\"\C-r\": \"\C-ahstr -- \C-j\"'" | $DEBUG tee -a $HOME/.bashrc
+  $DEBUG pip install "${PIP[@]}"
 fi

@@ -1,9 +1,12 @@
+alias .~='cd ~/'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias a='atom'
 alias a.='atom .'
+alias aw='atom --wait'
 
 alias .ba='source ~/.bash_aliases'
 alias .bal='source ~/.bash_aliases.local'
@@ -98,9 +101,9 @@ alias kl='kubectl logs'
 alias klf='kubectl logs -f'
 alias krun='kubectl run -it'
 
-alias kshell='kubectl run -R --rm -it kshell-justin --image=alpine --restart=Never -- sh'
-alias kgcloud='kubectl run -R --rm -it kshell-justin --image=google/cloud-sdk:alpine --restart=Never -- sh'
-alias kdash='((sleep 3; open http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/) &) && kubectl proxy'
+alias kshell='kubectl run -R --rm -it alpine --image=alpine --restart=Never -- sh'
+alias kgcloud='kubectl run -R --rm -it cloud-sdk --image=google/cloud-sdk:alpine --restart=Never -- sh'
+alias kdash='((sleep 2; open http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/) &) && kubectl proxy'
 
 b64d () {
   echo -n '$1' | base64 -D ; echo
@@ -109,5 +112,3 @@ b64d () {
 b64e () {
   echo -n '$1' | base64
 }
-
-[ -f "${HOME}/.bash_aliases.local" ] && . ${HOME}/.bash_aliases.local

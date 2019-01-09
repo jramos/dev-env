@@ -8,4 +8,4 @@
 [commit]
         gpgSign = true
 [credential]
-	helper = osxkeychain
+	      helper = osxkeychain
