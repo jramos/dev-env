@@ -1,0 +1,36 @@
+[ -r /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+[ -r $HOME/.kube-completions ] && . $HOME/.kube-completions
+
+# Google Cloud SDK
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+
+source <(kubectl completion bash)
+source <(npm completion)
+
+# setup command completion for aliases
+complete -o default -F __start_kubectl k
+
+# Git branch bash completion
+if [ -f ~/.git-completion ]; then
+  . ~/.git-completion
+
+  # Add git completion to aliases
+  __git_complete g __git_main
+  __git_complete ga __git_add
+  __git_complete gaa __git_add
+  __git_complete gb __git_branch
+  __git_complete gco _git_checkout
+  __git_complete gcob _git_checkout
+  __git_complete gl _git_log
+  __git_complete glp _git_log
+  __git_complete gm __git_merge
+  __git_complete gc _git_commit
+  __git_complete gpu _git_push
+  __git_complete gpuf _git_push
+  __git_complete gp _git_pull
+  __git_complete gr _git_reset
+  __git_complete grh _git_reset
+  __git_complete grhh _git_reset
+fi

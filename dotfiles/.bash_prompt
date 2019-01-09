@@ -1,0 +1,42 @@
+__is_gke() {
+[ -n "$(cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | grep -E "^gke|^csa" | grep -v "eks" )" ]
+}
+
+__cloud_config_ps1() {
+  if __is_gke; then
+    echo "$(cat $HOME/.config/gcloud/configurations/config_$(cat $HOME/.config/gcloud/active_config) | grep "project = " | cut -c11-)"
+  else
+    echo "$(switcher c | cut -c18-)"
+  fi
+}
+
+__cloud_ps1() {
+    if __is_gke; then
+      echo "gcp"
+    else
+      echo "aws"
+    fi
+}
+
+__kube_context_ps1() {
+    if __is_gke; then
+      cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | rev | cut -d_ -f1 | rev
+    else
+      cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | cut -f1 -d.
+    fi
+}
+
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+NORMAL="\[\033[00m\]"
+BLUE="\[\033[01;34m\]"
+MAGENTA="\[\033[01;35m\]"
+YELLOW="\[\e[1;33m\]"
+GREEN="\[\e[1;32m\]"
+GREY="\[\e[0;37m\]"
+
+PS_TIME="\[\033[\$((COLUMNS-10))G\] $GREY[\t]"
+
+export PS1="$GREEN\w$YELLOW(⑃ \$(parse_git_branch)) $BLUE(🌩  \$(__cloud_ps1)) $MAGENTA(☸️  \$(__kube_context_ps1)) $NORMAL ${PS_TIME}${NORMAL}\n$ "
