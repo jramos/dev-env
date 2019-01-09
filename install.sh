@@ -84,6 +84,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     keybase
     kubernetic
     metasploit
+    minikube
     osxfuse
     postico
     slack
