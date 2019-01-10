@@ -9,12 +9,12 @@ alias a.='atom .'
 alias aw='atom --wait'
 
 alias .ba='source ~/.bash_aliases'
-alias .bal='source ~/.bash_aliases.local'
 alias .bp='source ~/.bash_profile'
 alias .brc='source ~/.bashrc'
 alias v.ba='vi ~/.bash_aliases'
 alias v.bal='vi ~/.bash_aliases.local'
 alias v.bp='vi ~/.bash_profile'
+alias v.bpl='vi ~/.bash_profile.local'
 alias v.brc='vi ~/.bashrc'
 
 alias bup="brew update && brew upgrade"
