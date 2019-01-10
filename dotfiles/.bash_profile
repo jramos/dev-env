@@ -7,7 +7,6 @@ HOME=${HOME:-'/Users/justin'}
 [ -r $HOME/.bash_prompt ] && . $HOME/.bash_prompt
 [ -r $HOME/.profile ] && . $HOME/.profile
 
-export GOROOT=$HOME/go
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$HOME/go/bin:$PATH
 export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin
