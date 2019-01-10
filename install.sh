@@ -223,7 +223,11 @@ read -p 'Install pip packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   PIP=(
     gTTS
+    jinja2
+    numpy
+    pandas
     requests
+    tensorflow
   )
 
   $DEBUG pip install "${PIP[@]}"
