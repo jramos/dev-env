@@ -39,4 +39,4 @@ GREY="\[\e[0;37m\]"
 
 PS_TIME="\[\033[\$((COLUMNS-10))G\] $GREY[\t]"
 
-export PS1="$GREEN\w$YELLOW(⑃ \$(parse_git_branch)) $BLUE(🌩  \$(__cloud_ps1)) $MAGENTA(☸️  \$(__kube_context_ps1)) $NORMAL ${PS_TIME}${NORMAL}\n$ "
+export PS1="$GREEN\w $YELLOW(⑃ \$(parse_git_branch)) $BLUE(🌩  \$(__cloud_ps1)) $MAGENTA(☸️  \$(__kube_context_ps1)) $NORMAL ${PS_TIME}${NORMAL}\n$ "
