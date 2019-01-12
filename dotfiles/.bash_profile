@@ -1,15 +1,18 @@
 HOME=${HOME:-'/Users/justin'}
 
+export GOPATH=$HOME/go
+export PATH=$HOME/bin:$HOME/go/bin:$PATH
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin
+
+# enable and load bash completions (.bash_completion will be sourced if it exists)
+[ -r "/usr/local/etc/bash_completion.d" ] && source /usr/local/etc/bash_completion
+
 [ -r $HOME/.bash_aliases ] && . $HOME/.bash_aliases
 [ -r $HOME/.bash_aliases.local ] && . $HOME/.bash_aliases.local
 [ -r $HOME/.bash_completion ] && . $HOME/.bash_completion
 [ -r $HOME/.bash_profile.local ] && . $HOME/.bash_profile.local
 [ -r $HOME/.bash_prompt ] && . $HOME/.bash_prompt
 [ -r $HOME/.profile ] && . $HOME/.profile
-
-export GOPATH=$HOME/go
-export PATH=$HOME/bin:$HOME/go/bin:$PATH
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin
 
 export HH_CONFIG=hicolor                   # get more colors
 export HISTCONTROL=erasedups:ignorespace   # hide leading space and duplicates
@@ -39,7 +42,15 @@ shopt -s histappend
 # Make bash check its window size after a process completes
 shopt -s checkwinsize
 
+# NVM configuration
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 source <(npm completion)
+
+# Platform.sh CLI configuration
+HOME=${HOME:-'/Users/justin'}
+export PATH="$HOME/"'.platformsh/bin':"$PATH"
+if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/sbin:$PATH"

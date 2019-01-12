@@ -123,6 +123,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     nvm
     openssl
     openvpn
+    php@7.2
     pkg-config
     postgresql
     python
@@ -231,4 +232,18 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   )
 
   $DEBUG pip install "${PIP[@]}"
+fi
+
+read -p 'Install PHP CLIs? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  CLI=(
+    "https://getcomposer.org/installer"
+    "https://platform.sh/cli/installer"
+  )
+
+  for URL in "${CLI[@]}"; do
+    $DEBUG php -r "copy('${URL}', 'installer.php');"
+    $DEBUG php installer.php
+    $DEBUG php -r "unlink('installer.php');"
+  done
 fi

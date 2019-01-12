@@ -1,16 +1,6 @@
-
 # Google Cloud SDK
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
-
-
-source <(kubectl completion bash)
-source <(npm completion)
-
-[ -r $HOME/.kube-completions ] && . $HOME/.kube-completions
-
-# setup command completion for aliases
-complete -o default -F __start_kubectl k
 
 # Git branch bash completion
 if [ -f $HOME/.git-completion ]; then
@@ -34,3 +24,5 @@ if [ -f $HOME/.git-completion ]; then
   __git_complete grh _git_reset
   __git_complete grhh _git_reset
 fi
+
+source <(kubectl completion bash)
