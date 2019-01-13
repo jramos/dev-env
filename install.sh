@@ -123,6 +123,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   PIP=(
     gTTS
     jinja2
+    kube-shell
     numpy
     pandas
     requests
