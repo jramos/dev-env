@@ -46,7 +46,54 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG brew bundle install
 fi
 
-read -p 'Install apm packages? (y/N) '
+
+read -p 'Install npm packages? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  NPM=(
+    aws-profile-switcher
+    yarn
+  )
+
+  $DEBUG npm install -g "${NPM[@]}"
+fi
+
+read -p 'Install pip packages? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  PIP=(
+    gTTS
+    jinja2
+    kube-shell
+    numpy
+    pandas
+    requests
+    tensorflow
+  )
+
+  $DEBUG pip install "${PIP[@]}"
+fi
+
+read -p 'Install rvm and gems? (y/N) '
+if [[ $REPLY =~ ^[Yy] ]]; then
+  $DEBUG gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+  CMD="curl -sSL https://get.rvm.io | bash -s stable --ruby"
+  if [ -z "${DEBUG}" ]; then
+    eval ${CMD}
+  else
+    ${DEBUG} "${CMD}"
+  fi
+
+  source ${HOME}/.rvm/scripts/rvm
+
+  GEMS=(
+    bundler
+    rails
+  )
+
+  $DEBUG gem install "${GEMS[@]}"
+fi
+
+read -p 'Install Visual Studio Code packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   VS_EXTS=(
     bajdzis.vscode-database
@@ -77,29 +124,4 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   for VS_EXT in "${VS_EXTS[@]}"; do
     $DEBUG eval /usr/bin/env ELECTRON_RUN_AS_NODE=1 "$VS_CODE" --install-extension "${VS_EXT[@]}"
   done
-fi
-
-read -p 'Install npm packages? (y/N) '
-if [[ $REPLY =~ ^[Yy] ]]; then
-  NPM=(
-    aws-profile-switcher
-    yarn
-  )
-
-  $DEBUG npm install -g "${NPM[@]}"
-fi
-
-read -p 'Install pip packages? (y/N) '
-if [[ $REPLY =~ ^[Yy] ]]; then
-  PIP=(
-    gTTS
-    jinja2
-    kube-shell
-    numpy
-    pandas
-    requests
-    tensorflow
-  )
-
-  $DEBUG pip install "${PIP[@]}"
 fi

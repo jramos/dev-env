@@ -1,8 +1,7 @@
 HOME=${HOME:-'/Users/justin'}
 
 export GOPATH=$HOME/go
-export PATH=$HOME/bin:$HOME/go/bin:$PATH
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin
+export PATH=$HOME/bin:$HOME/go/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$PATH
 
 # enable and load bash completions (.bash_completion will be sourced if it exists)
 [ -r "/usr/local/etc/bash_completion.d" ] && source /usr/local/etc/bash_completion
