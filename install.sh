@@ -12,10 +12,7 @@ fi
 
 read -p 'Setup home directory? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
-  $DEBUG mkdir -p $HOME/bin
-  $DEBUG cp -r $DIR/bin/*.sh $HOME/bin
-  $DEBUG chmod +x $HOME/bin/*.sh
-  $DEBUG mkdir -p $HOME/.ssh
+  $DEBUG mkdir -p $HOME/bin $HOME/.ssh
   $DEBUG chmod 700 $HOME/.ssh
 fi
 

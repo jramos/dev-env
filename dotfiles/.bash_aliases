@@ -135,3 +135,14 @@ b64d () {
 b64e () {
   echo -n "$1" | base64
 }
+
+docker-delete() {
+  # Delete all containers
+  [ -n "$(docker ps -a -q)" ] && docker rm --force --volumes $(docker ps -a -q)
+
+  # Delete all images
+  [ -n "$(docker images -q)" ] && docker rmi --force $(docker images -q)
+
+  # Remove dangling volumes
+  [ -n "$(docker volume ls -qf dangling=true)" ] && docker volume rm --force $(docker volume ls -qf dangling=true)
+}
