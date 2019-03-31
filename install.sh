@@ -48,64 +48,35 @@ fi
 
 read -p 'Install apm packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
-  APM=(
-    atom-beautify
-    atom-clock
-    atom-ide-ui
-    atom-jinja2
-    atom-typescript
-    atom-wrap-in-tag
-    auto-update-plus
-    autocomplete
-    autocomplete-json
-    autocomplete-modules
-    browse
-    build
-    busy-signal
-    ctrl-dir-scroll
-    docblockr
-    editorconfig
-    file-icons
-    git-blame
-    git-time-machine
-    hey-pane
-    highlight-selected
-    ide-flowtype
-    ide-json
-    intentions
-    json-converter
-    json-schema
-    language-docker
-    language-ejs
-    language-jsonnet
-    language-markdown
-    language-terraform
-    linter
-    linter-docker
-    linter-eslint
-    linter-golinter
-    linter-js-yaml
-    linter-terraform-syntax
-    linter-ui-default
-    multi-cursor
-    plist-converter
-    pretty-json
-    satisfy-dependencies
-    set-syntax
-    sort-lines
-    split-diff
-    sublime
-    sublime-block-comment
-    Sublime-Style-Column-Selection
-    sublime-word-navigation
-    sublimify
-    tag
-    terraform-fmt
-    text-manipulation
-    todo-show
+  VS_EXTS=(
+    bajdzis.vscode-database
+    christian-kohler.npm-intellisense
+    dbaeumer.vscode-eslint
+    donjayamanne.githistory
+    eamodio.gitlens
+    EditorConfig.EditorConfig
+    esbenp.prettier-vscode
+    HookyQR.beautify
+    mauve.terraform
+    mgmcdermott.vscode-language-babel
+    ms-kubernetes-tools.vscode-kubernetes-tools
+    ms-vscode.atom-keybindings
+    ms-vscode.sublime-keybindings
+    msjsdiag.debugger-for-chrome
+    passionkind.prettier-vscode-with-tabs
+    PeterJausovec.vscode-docker
+    PKief.material-icon-theme
+    redhat.vscode-yaml
+    VisualStudioExptTeam.vscodeintellicode
+    wix.glean
+    zhuangtongfa.Material-theme
   )
 
-  $DEBUG apm install "${APM[@]}"
+  VS_PATH="/Applications/Visual Studio Code.app/Contents"
+  VS_CODE="\"${VS_PATH}/MacOS/Electron\" \"${VS_PATH}/Resources/app/out/cli.js\""
+  for VS_EXT in "${VS_EXTS[@]}"; do
+    $DEBUG eval /usr/bin/env ELECTRON_RUN_AS_NODE=1 "$VS_CODE" --install-extension "${VS_EXT[@]}"
+  done
 fi
 
 read -p 'Install npm packages? (y/N) '
@@ -131,18 +102,4 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   )
 
   $DEBUG pip install "${PIP[@]}"
-fi
-
-read -p 'Install PHP CLIs? (y/N) '
-if [[ $REPLY =~ ^[Yy] ]]; then
-  CLI=(
-    "https://getcomposer.org/installer"
-    "https://platform.sh/cli/installer"
-  )
-
-  for URL in "${CLI[@]}"; do
-    $DEBUG php -r "copy('${URL}', 'installer.php');"
-    $DEBUG php installer.php
-    $DEBUG php -r "unlink('installer.php');"
-  done
 fi

@@ -22,7 +22,7 @@ export FIGNORE=DS_Store;
 
 export CFLAGS="-march=native -O3 -pipe"
 export CXXFLAGS="${CFLAGS}"
-export EDITOR="atom --wait"
+export EDITOR="code --wait"
 
 if [[ $- =~ .*i.* ]]; then
   bind '"\e[5C": forward-word'
@@ -47,10 +47,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 source <(npm completion)
-
-# Platform.sh CLI configuration
-HOME=${HOME:-'/Users/justin'}
-export PATH="$HOME/"'.platformsh/bin':"$PATH"
-if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
-export PATH="/usr/local/opt/php@7.2/bin:$PATH"
-export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
