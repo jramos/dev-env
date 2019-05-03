@@ -8,8 +8,8 @@ if [ -f $HOME/.git-completion ]; then
 
   # Add git completion to aliases
   __git_complete g __git_main
-  __git_complete ga __git_add
-  __git_complete gaa __git_add
+  __git_complete ga _git_add
+  __git_complete gaa _git_add
   __git_complete gb __git_branch
   __git_complete gco _git_checkout
   __git_complete gcob _git_checkout

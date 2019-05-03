@@ -9,3 +9,7 @@
         gpgSign = true
 [credential]
 	      helper = osxkeychain
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh
+[http]
+	cookiefile = /Users/justin/.gitcookies
