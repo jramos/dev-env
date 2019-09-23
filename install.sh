@@ -14,6 +14,15 @@ read -p 'Setup home directory? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG mkdir -p $HOME/bin $HOME/.ssh
   $DEBUG chmod 700 $HOME/.ssh
+
+  read -p 'Install dotfile symlinks? (y/N) '
+  if [[ $REPLY =~ ^[Yy] ]]; then
+    for FILE in $(find $DIR/dotfiles -type f); do
+      FILE_PATH=${FILE#"${DIR}/dotfiles"/}
+      $DEBUG mv -f $HOME/$FILE_PATH $HOME/$FILE_PATH.bak-$(date +%Y-%m-%d)
+      $DEBUG ln -s $FILE $HOME/$FILE_PATH
+    done
+  fi
 fi
 
 read -p 'Add /etc files? (y/N) '
@@ -21,14 +30,6 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG sudo cp -r $DIR/etc/* /etc/
 fi
 
-read -p 'Install dotfile symlinks? (y/N) '
-if [[ $REPLY =~ ^[Yy] ]]; then
-  for FILE in $(find $DIR/dotfiles -type f); do
-    FILE_PATH=${FILE#"${DIR}/dotfiles"/}
-    $DEBUG mv -f $HOME/$FILE_PATH $HOME/$FILE_PATH.bak-$(date +%Y-%m-%d)
-    $DEBUG ln -s $FILE $HOME/$FILE_PATH
-  done
-fi
 
 read -p 'Install homebrew? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
