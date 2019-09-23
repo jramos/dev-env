@@ -30,7 +30,6 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG sudo cp -r $DIR/etc/* /etc/
 fi
 
-
 read -p 'Install homebrew? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   # homebrew
@@ -43,7 +42,6 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG brew update
   $DEBUG brew bundle install
 fi
-
 
 read -p 'Install npm packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
