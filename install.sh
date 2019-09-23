@@ -79,7 +79,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     ${DEBUG} "${CMD}"
   fi
 
-  source ${HOME}/.rvm/scripts/rvm
+  ${DEBUG} source ${HOME}/.rvm/scripts/rvm
 
   GEMS=(
     bundler
