@@ -19,7 +19,8 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   if [[ $REPLY =~ ^[Yy] ]]; then
     for FILE in $(find $DIR/dotfiles -type f); do
       FILE_PATH=${FILE#"${DIR}/dotfiles"/}
-      $DEBUG mv -f $HOME/$FILE_PATH $HOME/$FILE_PATH.bak-$(date +%Y-%m-%d)
+      [ -f $HOME/$FILE_PATH ] && \
+        $DEBUG mv -f $HOME/$FILE_PATH $HOME/$FILE_PATH.bak-$(date +%Y-%m-%d)
       $DEBUG ln -s $FILE $HOME/$FILE_PATH
     done
   fi
@@ -30,7 +31,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
   $DEBUG sudo cp -r $DIR/etc/* /etc/
 fi
 
-read -p 'Install homebrew? (y/N) '
+read -p 'Install homebrew and packages? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
   # homebrew
   if [ -z "$(which brew)" ]; then

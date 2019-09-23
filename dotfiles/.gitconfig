@@ -1,6 +1,6 @@
 [user]
         name = Justin Ramos
-        email = justin@untitled-labs.com
+        email = justin.ramos@gmail.com
 [push]
         default = simple
 [color]
@@ -8,7 +8,7 @@
 [commit]
         gpgSign = true
 [credential]
-	      helper = osxkeychain
+	helper = osxkeychain
 [credential "https://source.developers.google.com"]
 	helper = gcloud.sh
 [http]
