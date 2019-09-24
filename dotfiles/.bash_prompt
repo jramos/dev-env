@@ -1,5 +1,6 @@
 __is_gke() {
-[ -n "$(cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | grep -E "^gke|^csa" | grep -v "eks" )" ]
+  [ -f $HOME/.kube/config ] && \
+    [ -n "$(cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | grep -E "^gke|^csa" | grep -v "eks" )" ]
 }
 
 __cloud_config_ps1() {
@@ -20,9 +21,11 @@ __cloud_ps1() {
 
 __kube_context_ps1() {
     if __is_gke; then
-      cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | rev | cut -d_ -f1 | rev
+      [ -f $HOME/.kube/config ] && \
+        cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | rev | cut -d_ -f1 | rev
     else
-      cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | cut -f1 -d.
+      [ -f $HOME/.kube/config ] && \
+        cat $HOME/.kube/config | grep "current-context:" | sed "s/current-context: //" | cut -f1 -d.
     fi
 }
 

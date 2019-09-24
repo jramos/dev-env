@@ -1,7 +1,7 @@
 HOME=${HOME:-'/Users/justin'}
 
 export GOPATH=$HOME/go
-export PATH="$HOME/bin:$HOME/go/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$(npm bin 2> /dev/null):$PATH"
+export PATH="$HOME/bin:$HOME/go/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$PATH"
 
 # enable and load bash completions (.bash_completion will be sourced if it exists)
 [ -r "/usr/local/etc/bash_completion.d" ] && source /usr/local/etc/bash_completion
@@ -45,4 +45,3 @@ shopt -s checkwinsize
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-source <(npm completion)

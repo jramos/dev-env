@@ -66,7 +66,7 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     tensorflow
   )
 
-  $DEBUG pip install "${PIP[@]}"
+  $DEBUG pip3 install "${PIP[@]}"
 fi
 
 read -p 'Install rvm and gems? (y/N) '
@@ -108,7 +108,6 @@ if [[ $REPLY =~ ^[Yy] ]]; then
     ms-vscode.sublime-keybindings
     msjsdiag.debugger-for-chrome
     passionkind.prettier-vscode-with-tabs
-    PeterJausovec.vscode-docker
     PKief.material-icon-theme
     redhat.vscode-yaml
     VisualStudioExptTeam.vscodeintellicode
