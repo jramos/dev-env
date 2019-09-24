@@ -30,7 +30,6 @@ alias yi="yarn install"
 alias yl="yarn lint"
 alias yr="yarn remove"
 alias ys="yarn start"
-alias ys="yarn start"
 alias yt="yarn test" 
 alias yui="yarn upgrade-interactive"
 
