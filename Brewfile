@@ -38,6 +38,7 @@ cask 'wireshark'
 cask 'xquartz'
 cask 'zenmap'
 
+brew 'aircrack-ng'
 brew 'ansible'
 brew 'ark'
 brew 'autoconf'
