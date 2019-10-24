@@ -1,9 +1,9 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-versions'
+tap 'homebrew/cask'
 
 cask 'bettertouchtool'
 cask 'burp-suite'
@@ -44,6 +44,7 @@ brew 'ansible'
 brew 'ark'
 brew 'autoconf'
 brew 'automake'
+brew 'aws-iam-authenticator'
 brew 'awscli'
 brew 'bash-completion'
 brew 'certbot'
