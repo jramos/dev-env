@@ -6,6 +6,7 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/cask'
 
 cask 'adoptopenjdk'
+cask 'adoptopenjdk8'
 cask 'bettertouchtool'
 cask 'burp-suite'
 cask 'copyclip'
