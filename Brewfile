@@ -10,6 +10,7 @@ tap 'ksonnet/tap'
 
 cask 'adoptopenjdk'
 cask 'adoptopenjdk8'
+cask 'android-platform-tools'
 cask 'bettertouchtool'
 cask 'burp-suite'
 cask 'copyclip'
