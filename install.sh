@@ -28,7 +28,7 @@ fi
 
 read -p 'Add /etc files? (y/N) '
 if [[ $REPLY =~ ^[Yy] ]]; then
-  $DEBUG sudo cp -r $DIR/etc/* /etc/
+  $DEBUG sudo cp -rf $DIR/etc/* /etc/
 fi
 
 read -p 'Install homebrew and packages? (y/N) '
