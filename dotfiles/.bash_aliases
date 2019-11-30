@@ -8,6 +8,8 @@ alias c="code"
 alias c.="code ."
 alias cw="code --wait"
 
+alias f="fuck"
+
 alias .ba="source ${HOME}/.bash_aliases"
 alias .bal="source ${HOME}/.bash_aliases.local"
 alias .bp="source ${HOME}/.bash_profile"
