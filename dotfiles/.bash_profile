@@ -3,6 +3,7 @@ HOME=${HOME:-'/Users/justin'}
 export GOPATH=$HOME/go
 export PATH="$HOME/bin:$HOME/go/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 # enable and load bash completions (.bash_completion will be sourced if it exists)
 [ -r "/usr/local/etc/bash_completion.d" ] && source /usr/local/etc/bash_completion
