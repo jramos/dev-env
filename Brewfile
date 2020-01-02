@@ -46,7 +46,6 @@ cask 'virtualbox'
 cask 'visual-studio-code'
 cask 'vnc-viewer'
 cask 'wine-stable'
-cask 'wireshark'
 cask 'xquartz'
 cask 'zenmap'
 
