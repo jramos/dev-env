@@ -4,12 +4,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias c="code"
-alias c.="code ."
-alias cw="code --wait"
-
-alias f="fuck"
-
 alias .ba="source ${HOME}/.bash_aliases"
 alias .bal="source ${HOME}/.bash_aliases.local"
 alias .bp="source ${HOME}/.bash_profile"
@@ -24,32 +18,30 @@ alias v.brc="vi ${HOME}/.bashrc"
 alias bup="brew update && brew upgrade && brew cask upgrade"
 alias bci="brew cask install"
 alias bi="brew install"
+alias bui="brew uninstall"
 
-alias ya="yarn add"
-alias ycr="yarn create react-app"
-alias yd="yarn dev"
-alias yi="yarn install"
-alias yl="yarn lint"
-alias yr="yarn remove"
-alias ys="yarn start"
-alias yt="yarn test" 
-alias yui="yarn upgrade-interactive"
+alias bi="bundle install --path vendor/bundle"
+alias bil="bundle install --local --path vendor/bundle"
+alias be="bundle exec"
+alias bu="bundle update"
 
-alias disable-tm-local="sudo tmutil disablelocal"
-alias dns-flush="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias generate-mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/:$//' | tr a-f A-F"
-alias hard-reboot="sudo reboot -f"
-alias mac-switch="sudo ifconfig en0 down && sudo ifconfig en0 ether \$(generate-mac) && sudo ifconfig en0 up"
-alias nmap-scan="nmap --spoof-mac \$(generate-mac) -v -Pn"
-alias open-ports="lsof -P -i -n"
-alias poweroff="sudo shutdown -hP now"
+alias c="code"
+alias c.="code ."
+alias cw="code --wait"
+alias cw.="code --wait ."
+
+alias f="fuck"
 
 alias db="docker build"
 alias dbnc="docker build --no-cache"
 alias de="docker exec"
+alias di="docker images"
+alias dia="docker images -a"
 alias dk="docker kill"
-alias dr="docker run"
-alias drf="docker rm -f"
+alias dps="docker ps"
+alias drun="docker run"
+alias drunit="docker run --rm -it"
+alias drm="docker rm -f"
 
 alias dc="docker-compose"
 alias dcb="docker-compose build"
@@ -130,8 +122,25 @@ alias kshell="kubectl run -R --rm -it alpine --image=alpine --restart=Never -- s
 alias kgcloud="kubectl run -R --rm -it cloud-sdk --image=google/cloud-sdk:alpine --restart=Never -- sh"
 alias kdash="((sleep 2; open http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/) &) && kubectl proxy"
 
+alias ya="yarn add"
+alias ycr="yarn create react-app"
+alias yd="yarn dev"
+alias yi="yarn install"
+alias yl="yarn lint"
+alias yr="yarn remove"
+alias ys="yarn start"
+alias yt="yarn test" 
+alias yui="yarn upgrade-interactive"
+
 alias y="yes"
 alias n="yes "N""
+
+alias disable-tm-local="sudo tmutil disablelocal"
+alias dns-flush="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+alias hard-reboot="sudo reboot -f"
+alias nmap-scan="nmap --spoof-mac \$(generate_mac) -v -Pn"
+alias open-ports="lsof -P -i -n"
+alias poweroff="sudo shutdown -hP now"
 
 b64d () {
   echo -n "$1" | base64 -D ; echo
@@ -141,13 +150,35 @@ b64e () {
   echo -n "$1" | base64
 }
 
-docker-delete() {
-  # Delete all containers
-  [ -n "$(docker ps -a -q)" ] && docker rm --force --volumes $(docker ps -a -q)
+docker_delete () {
+  CONTAINERS=$(docker ps -a -q)
+  IMAGES=$(docker images -q)
+  DANGLING_VOLUMES=$(docker volume ls -qf dangling=true)
 
-  # Delete all images
-  [ -n "$(docker images -q)" ] && docker rmi --force $(docker images -q)
+  [ -n "${CONTAINERS}" ] && docker rm --force --volumes ${CONTAINERS}
+  [ -n "${IMAGES}" ] && docker rmi --force ${IMAGES}
+  [ -n "${DANGLING_VOLUMES}" ] && docker volume rm --force ${DANGLING_VOLUMES}
+}
 
-  # Remove dangling volumes
-  [ -n "$(docker volume ls -qf dangling=true)" ] && docker volume rm --force $(docker volume ls -qf dangling=true)
+generate_mac () {
+  openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/:$//' | tr a-f A-F
+}
+
+mac_switch () {
+  INTERFACE=${1:-"en0"}
+
+  sudo ifconfig ${INTERFACE} down && \
+  sudo ifconfig ${INTERFACE} ether $(generate_mac) && \
+  sudo ifconfig ${INTERFACE} up
+}
+
+ssh_tunnel () {
+  HOST=$1
+  PORT=$2
+  USER=${3:-"justin"}
+
+  [ -n ${HOST} || -n ${PORT} ] && \
+    echo "ssh-tunnel HOST PORT (USER)" && exit 1
+  
+  ssh -L ${PORT}:127.0.0.1:${PORT} -C -N -l ${USER} ${HOST}
 }
