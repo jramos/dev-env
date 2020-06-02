@@ -23,7 +23,7 @@ export FIGNORE=DS_Store;
 
 export CFLAGS="-march=native -O3 -pipe"
 export CXXFLAGS="${CFLAGS}"
-export EDITOR="code --wait"
+export EDITOR="/usr/local/bin/code --wait"
 
 if [[ $- =~ .*i.* ]]; then
   bind '"\e[5C": forward-word'
