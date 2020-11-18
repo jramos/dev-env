@@ -15,7 +15,7 @@ alias v.bp="vi ${HOME}/.bash_profile"
 alias v.bpl="vi ${HOME}/.bash_profile.local"
 alias v.brc="vi ${HOME}/.bashrc"
 
-alias bup="brew update && brew upgrade && brew cask upgrade"
+alias bup="brew update && brew upgrade && brew upgrade --cask"
 alias bci="brew cask install"
 alias bi="brew install"
 alias bui="brew uninstall"
